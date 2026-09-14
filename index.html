@@ -66,18 +66,19 @@ tbody tr:last-child td{border-bottom:0}
 .tag{display:inline-block;font-size:12px;color:var(--muted)}
 
 /* barra de uso */
-.bar{position:relative;height:8px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;min-width:110px}
-.bar > i{position:absolute;inset:0 auto 0 0;border-radius:6px;display:block}
+.bar{position:relative;height:5px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;max-width:170px}
+.bar > i{position:absolute;inset:0 auto 0 0;border-radius:999px;display:block}
 .usepct{font-weight:700;font-size:14px;margin-bottom:6px}
 .usepct small{color:var(--muted2);font-weight:500}
 
-/* farol pill */
-.farol{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px;
-  padding:6px 12px;border-radius:999px;white-space:nowrap}
-.farol.ok{background:var(--ok-bg);color:var(--ok)}
-.farol.warn{background:var(--warn-bg);color:var(--warn)}
-.farol.crit{background:var(--crit-bg);color:var(--crit)}
-.farol.na{background:rgba(255,255,255,.06);color:var(--muted)}
+/* farol: bolinha + texto (leve, sem moldura) */
+.farol{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;white-space:nowrap}
+.farol::before{content:"";width:9px;height:9px;border-radius:50%;flex:none;background:currentColor;
+  box-shadow:0 0 0 4px color-mix(in srgb,currentColor 16%,transparent)}
+.farol.ok{color:var(--ok)}
+.farol.warn{color:var(--warn)}
+.farol.crit{color:var(--crit)}
+.farol.na{color:var(--muted2)}
 .rec{font-size:13px;max-width:42ch;line-height:1.45}
 .rec b{color:var(--txt)}
 .chev{color:var(--muted2);font-size:18px}
@@ -109,9 +110,25 @@ tbody tr:last-child td{border-bottom:0}
 .chartwrap .ctitle{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px}
 svg{display:block;max-width:100%}
 
+/* KPIs clicáveis */
+.kclick{cursor:pointer;border-radius:12px;padding:10px 14px;transition:background .15s}
+.kclick:hover{background:rgba(255,255,255,.04)}
+
+/* lista de clientes dentro do modal */
+.lista{display:flex;flex-direction:column;margin-top:14px}
+.listrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
+  background:none;border:0;border-bottom:1px solid var(--line);color:var(--txt);
+  padding:13px 4px;font-family:inherit;font-size:14px;transition:background .15s;border-radius:8px}
+.listrow:hover{background:rgba(255,255,255,.04)}
+.listrow:last-child{border-bottom:0}
+.listrow .lnome{flex:1;font-weight:600}
+.listrow .linfo{color:var(--muted);font-size:13px;white-space:nowrap}
+.listrow .chev{flex:none}
+
 @media (max-width:640px){
   .stamp{text-align:left}
   header{align-items:flex-start}
+  .listrow .linfo{display:none}
 }
 </style>
 </head>
@@ -119,7 +136,6 @@ svg{display:block;max-width:100%}
 <header>
   <div class="titlewrap">
     <img class="logo" src="logo.png" alt="Silva &amp; Silva Advogados">
-    <h1>Saúde dos Contratos</h1>
   </div>
   <div class="stamp">
     Atualizado em <b id="hoje"></b>
@@ -211,6 +227,8 @@ function analisa(c){
 /* ================= RENDER ================= */
 const barColor = n => n==='crit'?'var(--crit)':n==='warn'?'var(--warn)':'var(--ok)';
 
+let CLIENTES=[], ANS=[];
+
 function renderKpis(clientes, an){
   const cont={ok:0,warn:0,crit:0,na:0};
   let excedente=0;
@@ -219,14 +237,52 @@ function renderKpis(clientes, an){
       excedente += (c.utilizadas-c.contratadas)*c.valor_hora;});
   const k = document.getElementById('kpis');
   k.innerHTML = `
-    <div class="kpi accent"><div class="lab">Clientes contratados</div><div class="val tnum">${clientes.length}</div></div>
-    <div class="kpi"><div class="lab">Saudáveis</div><div class="val tnum"><span class="dot ok"></span>${cont.ok}</div></div>
-    <div class="kpi"><div class="lab">Em atenção</div><div class="val tnum"><span class="dot warn"></span>${cont.warn}</div></div>
-    <div class="kpi"><div class="lab">Possível aditivo</div><div class="val tnum"><span class="dot crit"></span>${cont.crit}</div></div>
-    <div class="kpi accent"><div class="lab">Excedente previsto</div><div class="val tnum">${excedente>0?fmtR(excedente):'R$ 0,00'}</div></div>`;
+    <div class="kpi accent kclick" data-f="todos"><div class="lab">Clientes contratados</div><div class="val tnum">${clientes.length}</div></div>
+    <div class="kpi kclick" data-f="ok"><div class="lab">Saudáveis</div><div class="val tnum"><span class="dot ok"></span>${cont.ok}</div></div>
+    <div class="kpi kclick" data-f="warn"><div class="lab">Em atenção</div><div class="val tnum"><span class="dot warn"></span>${cont.warn}</div></div>
+    <div class="kpi kclick" data-f="crit"><div class="lab">Sugestões</div><div class="val tnum"><span class="dot crit"></span>${cont.crit}</div></div>
+    <div class="kpi accent kclick" data-f="exc"><div class="lab">Excedente previsto</div><div class="val tnum">${excedente>0?fmtR(excedente):'R$ 0,00'}</div></div>`;
+  k.querySelectorAll('.kclick').forEach(el=>el.onclick=()=>abreLista(el.dataset.f));
 }
 
 const ordem={crit:0,warn:1,ok:2,na:3};
+
+const TITULOS={todos:'Todos os clientes contratados',ok:'Clientes saudáveis',
+  warn:'Clientes em atenção',crit:'Clientes com sugestão de aditivo',exc:'Clientes com excedente previsto'};
+
+function abreLista(f){
+  const linhas=[];
+  CLIENTES.forEach((c,i)=>{
+    const a=ANS[i];
+    let inc=false;
+    if(f==='todos') inc=true;
+    else if(f==='exc') inc=(c.contratadas && c.utilizadas>c.contratadas);
+    else inc=(a.nivel===f);
+    if(inc) linhas.push({c,a});
+  });
+  // ordena por % usado desc
+  linhas.sort((x,y)=>y.a.usoPct-x.a.usoPct);
+  const m=document.getElementById('modal');
+  const itens = linhas.map(({c,a})=>{
+    const badge = a.nivel==='na' ? '' : `<span class="farol ${a.nivel}">${a.farolTxt}</span>`;
+    const info = c.contratadas
+      ? `${a.usoPct.toFixed(0)}% <span style="color:var(--muted2)">de ${fmtH(c.contratadas)}</span>`
+      : `${fmtH(c.utilizadas)} lançadas`;
+    return `<button class="listrow" data-i="${CLIENTES.indexOf(c)}">
+      <span class="lnome">${c.nome}</span>
+      <span class="linfo tnum">${info}</span>
+      ${badge}<span class="chev">›</span></button>`;
+  }).join('');
+  m.innerHTML=`
+    <button class="x" onclick="fecha()" aria-label="Fechar">×</button>
+    <h3>${TITULOS[f]}</h3>
+    <div class="msub">${linhas.length} ${linhas.length===1?'cliente':'clientes'}</div>
+    <div class="lista">${itens||'<div style="color:var(--muted);padding:16px 0">Nenhum cliente neste grupo.</div>'}</div>`;
+  m.querySelectorAll('.listrow').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i; abreModal(CLIENTES[i],ANS[i]);
+  });
+  document.getElementById('overlay').classList.add('on');
+}
 
 function renderTabela(clientes, ans){
   const tb=document.getElementById('tbody'); tb.innerHTML='';
@@ -243,7 +299,7 @@ function renderTabela(clientes, ans){
     const tr=document.createElement('tr');
     tr.onclick=()=>abreModal(c,a);
     tr.innerHTML=`
-      <td><div class="cli">${c.nome}<small>${c.grupo||''}</small></div></td>
+      <td><div class="cli">${c.nome}</div></td>
       <td><span class="tag">${c.periodicidade}${c.contratadas?' · '+fmtH(c.contratadas):''}</span></td>
       <td>${consumo}</td>
       <td class="tnum">${proj}</td>
@@ -259,7 +315,7 @@ function abreModal(c,a){
   m.innerHTML=`
     <button class="x" onclick="fecha()" aria-label="Fechar">×</button>
     <h3>${c.nome}</h3>
-    <div class="msub">${c.grupo? c.grupo+' · ':''}Contrato ${c.periodicidade.toLowerCase()}${c.meses?' ('+c.meses+' meses)':''} · Período ${c.sem_now} de ${c.sem_total} · Hora excedente ${fmtR(c.valor_hora)}</div>
+    <div class="msub">Contrato ${c.periodicidade.toLowerCase()}${c.meses?' ('+c.meses+' meses)':''} · Período ${c.sem_now} de ${c.sem_total}${c.valor_hora?' · Hora excedente '+fmtR(c.valor_hora):''}</div>
     <div class="mgrid">
       <div class="mstat"><div class="l">Contratadas</div><div class="v tnum">${fmtH(c.contratadas)}</div></div>
       <div class="mstat"><div class="l">Utilizadas</div><div class="v tnum">${fmtH(c.utilizadas)}</div></div>
@@ -322,6 +378,7 @@ document.getElementById('hoje').textContent =
 function pinta(clientes){
   if(!clientes || !clientes.length){document.getElementById('empty').hidden=false;return;}
   const ans=clientes.map(analisa);
+  CLIENTES=clientes; ANS=ans;
   renderKpis(clientes,ans);
   renderTabela(clientes,ans);
 }
