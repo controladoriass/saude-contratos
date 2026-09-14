@@ -1,127 +1,137 @@
 [
   {
-    "nome": "ADS",
+    "nome": "ADS Drones Distribuição",
     "pasta": "ADS",
-    "arquivo": "RELATÓRIO DE HORAS S&S - ADS DRONES DISTRIBUIÇÃO - Semana 23 - 02.09.2026 a 08.09.2026.xlsx",
+    "arquivo": "RELATÓRIO DE HORAS S&S - ADS DRONES DISTRIBUIÇÃO - Semana 06 e 07 - 30.04.2026 a 06.05.2026 e 07.05.2026 a 13.05.2026.xlsx",
     "periodicidade": "Semestral",
     "meses": 6,
     "contratadas": 96.0,
-    "utilizadas": 37.93,
+    "utilizadas": 0.63,
     "excedidas": 0.0,
-    "restantes": 58.07,
+    "restantes": 95.37,
     "valor_hora": 470.0,
-    "progresso": "SEMANA 23 DE 26",
+    "valor_excedido": 0.0,
+    "progresso": "SEMANA 06",
     "serie": [
       {
-        "rotulo": "Semana 01 - 01/04/2026 a 07/04/2026",
+        "rotulo": "Semana 01 - 01/04/2026 a 01/04/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 02 - 08/04/2026 a 14/04/2026",
-        "util": 0.63
+        "rotulo": "Semana 02 - 02/04/2026 a 08/04/2026",
+        "util": 0.6333
       },
       {
-        "rotulo": "Semana 03 - 15/04/2026 a 21/04/2026",
+        "rotulo": "Semana 03 - 09/04/2026 a 15/04/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 04 - 22/04/2026 a 28/04/2026",
+        "rotulo": "Semana 04 - 16/04/2026 a 22/04/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 05 - 29/04/2026 a 05/05/2026",
+        "rotulo": "Semana 05 - 23/04/2026 a 29/04/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 06 - 06/05/2026 a 12/05/2026",
+        "rotulo": "Semana 06 - 30/04/2026 a 06/05/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 07 - 13/05/2026 a 19/05/2026",
-        "util": 0.78
-      },
-      {
-        "rotulo": "Semana 08 - 20/05/2026 a 26/05/2026",
-        "util": 3.13
-      },
-      {
-        "rotulo": "Semana 09 - 27/05/2026 a 02/06/2026",
-        "util": 1.29
-      },
-      {
-        "rotulo": "Semana 10 - 03/06/2026 a 09/06/2026",
-        "util": 3.05
-      },
-      {
-        "rotulo": "Semana 11 - 10/06/2026 a 16/06/2026",
+        "rotulo": "Semana 07 - 07/05/2026 a 13/05/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 12 - 17/06/2026 a 23/06/2026",
+        "rotulo": "Semana 08 - 14/05/2026 a 20/05/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 13 - 24/06/2026 a 30/06/2026",
+        "rotulo": "Semana 09 - 21/05/2026 a 27/05/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 14 - 01/07/2026 a 07/07/2026",
+        "rotulo": "Semana 10 - 28/05/2026 a 03/06/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 15 - 08/07/2026 a 14/07/2026",
-        "util": 1.37
-      },
-      {
-        "rotulo": "Semana 16 - 15/07/2026 a 21/07/2026",
-        "util": 3.15
-      },
-      {
-        "rotulo": "Semana 17 - 22/07/2026 a 28/07/2026",
+        "rotulo": "Semana 11 - 04/06/2026 a 10/06/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 18 - 29/07/2026 a 04/08/2026",
-        "util": 5.85
-      },
-      {
-        "rotulo": "Semana 19 - 05/08/2026 a 11/08/2026",
-        "util": 0.33
-      },
-      {
-        "rotulo": "Semana 20 - 12/08/2026 a 18/08/2026",
+        "rotulo": "Semana 12 - 11/06/2026 a 17/06/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 21 - 19/08/2026 a 25/08/2026",
-        "util": 5.57
-      },
-      {
-        "rotulo": "Semana 22 - 26/08/2026 a 01/09/2026",
-        "util": 9.85
-      },
-      {
-        "rotulo": "Semana 23 - 02/09/2026 a 08/09/2026",
-        "util": 2.92
-      },
-      {
-        "rotulo": "Semana 24 - 09/09/2026 a 15/09/2026",
+        "rotulo": "Semana 13 - 18/06/2026 a 24/06/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 25 - 16/09/2026 a 22/09/2026",
+        "rotulo": "Semana 14 - 25/06/2026 a 01/07/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Semana 26 - 23/09/2026 a 30/09/2026",
+        "rotulo": "Semana 15 - 02/07/2026 a 08/07/2026",
         "util": 0.0
+      },
+      {
+        "rotulo": "Semana 16 - 09/07/2026 a 15/07/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 17 - 16/07/2026 a 22/07/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 18 - 23/07/2026 a 29/07/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 19 - 30/07/2026 a 05/08/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 20 - 06/08/2026 a 12/08/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 21 - 13/08/2026 a 19/08/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 22 - 20/08/2026 a 26/08/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 23 - 27/08/2026 a 02/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 24 - 03/09/2026 a 09/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 25 - 10/09/2026 a 16/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 26 - 17/09/2026 a 23/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 27 - 24/09/2026 a 30/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 0.6333
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "AGROTOP",
-    "pasta": "AGROTOP > 3 TRIMESTRE",
+    "nome": "Agrotop Fertilizantes e Minérios LTDA",
+    "pasta": "AGROTOP",
     "arquivo": "MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - AGROTOP FERTILIZANTES E MINERIOS LTDA - 09.08.2026 a 08.09.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
@@ -130,95 +140,107 @@
     "excedidas": 0.0,
     "restantes": 26.81,
     "valor_hora": 500.0,
+    "valor_excedido": 0.0,
     "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 09/07/2026 a 08/08/2026",
-        "util": 6.33
+        "util": 6.3333
       },
       {
         "rotulo": "Mês 02 - 09/08/2026 a 08/09/2026",
-        "util": 26.86
+        "util": 26.8589
       },
       {
-        "rotulo": "Mês 03 - 09/09/2026 a 08/10/2026 (fecham",
+        "rotulo": "Mês 03 - 09/09/2026 a 08/10/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 33.1922
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "ASAEL EMPREENDIMENTOS LTDA",
-    "pasta": "TRIMESTRE 01/09  A 30/11/2026",
-    "arquivo": "Semana 02 de 13 - RELATÓRIO DE HORAS S&S - ASAEL EMPREENDIMENTOS LTDA - 08.09.2026 a 14.09.2026.xlsx",
+    "nome": "Asael Empreendimentos LTDA",
+    "pasta": "ASAEL",
+    "arquivo": "Semana 13 de 13 - RELATÓRIO DE HORAS S&S - ASAEL EMPREENDIMENTOS LTDA - 24.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 60.0,
-    "utilizadas": 6.33,
-    "excedidas": 0.0,
-    "restantes": 53.67,
+    "utilizadas": 98.59,
+    "excedidas": 38.59,
+    "restantes": -38.59,
     "valor_hora": 250.0,
-    "progresso": "SEMANA 02 DE 13",
+    "valor_excedido": 9646.39,
+    "progresso": "SEMANA 13 DE 13",
     "serie": [
       {
-        "rotulo": "Semana 01 - 01/09/2026 a 07/09/2026",
-        "util": 1.87
+        "rotulo": "Semana 01 - 01/06/2026 a 07/06/2026",
+        "util": 9.3892
       },
       {
-        "rotulo": "Semana 02 - 08/09/2026 a 14/09/2026",
-        "util": 4.46
+        "rotulo": "Semana 02 - 08/06/2026 a 14/06/2026",
+        "util": 15.4714
       },
       {
-        "rotulo": "Semana 03 - 15/09/2026 a 21/09/2026",
-        "util": 0.0
+        "rotulo": "Semana 03 - 15/06/2026 a 21/06/2026",
+        "util": 2.8892
       },
       {
-        "rotulo": "Semana 04 - 22/09/2026 a 28/09/2026",
-        "util": 0.0
+        "rotulo": "Semana 04 - 22/06/2026 a 28/06/2026",
+        "util": 13.1939
       },
       {
-        "rotulo": "Semana 05 - 29/09/2026 a 05/10/2026",
-        "util": 0.0
+        "rotulo": "Semana 05 - 29/06/2026 a 05/07/2026",
+        "util": 22.9356
       },
       {
-        "rotulo": "Semana 06 - 06/10/2026 a 12/10/2026",
-        "util": 0.0
+        "rotulo": "Semana 06 - 06/07/2026 a 12/07/2026",
+        "util": 1.1833
       },
       {
-        "rotulo": "Semana 07 - 13/10/2026 a 19/10/2026",
-        "util": 0.0
+        "rotulo": "Semana 07 - 13/07/2026 a 19/07/2026",
+        "util": 5.9175
       },
       {
-        "rotulo": "Semana 08 - 20/10/2026 a 26/10/2026",
-        "util": 0.0
+        "rotulo": "Semana 08 - 20/07/2026 a 26/07/2026",
+        "util": 0.75
       },
       {
-        "rotulo": "Semana 09 - 27/10/2026 a 02/11/2026",
-        "util": 0.0
+        "rotulo": "Semana 09 - 27/07/2026 a 02/08/2026",
+        "util": 7.5333
       },
       {
-        "rotulo": "Semana 10 - 03/11/2026 a 09/11/2026",
-        "util": 0.0
+        "rotulo": "Semana 10 - 03/08/2026 a 09/08/2026",
+        "util": 7.5167
       },
       {
-        "rotulo": "Semana 11 - 10/11/2026 a 16/11/2026",
-        "util": 0.0
+        "rotulo": "Semana 11 - 10/08/2026 a 16/08/2026",
+        "util": 5.55
       },
       {
-        "rotulo": "Semana 12 - 17/11/2026 a 23/11/2026",
-        "util": 0.0
+        "rotulo": "Semana 12 - 17/08/2026 a 23/08/2026",
+        "util": 1.4167
       },
       {
-        "rotulo": "Semana 13 - 24/11/2026 a 30/11/2026 (fec",
-        "util": 0.0
+        "rotulo": "Semana 13 - 24/08/2026 a 31/08/2026 (fechame",
+        "util": 4.825
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 98.5856
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "CESCON CONSTRUTORA E INCORPORADORA LTDA",
-    "pasta": "CESCON / 2 TRIMESTRE",
-    "arquivo": "CESCON.xlsx",
+    "nome": "Cescon Construtora e Incorporadora LTDA",
+    "pasta": "CESCON",
+    "arquivo": "MÊS 03 DE 03 - RELATÓRIO DE HORAS S&S - CESCON CONSTRUTORA E INCORPORADORA LTDA - 18.07.2026 a 17.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 45.0,
@@ -226,34 +248,41 @@
     "excedidas": 20.09,
     "restantes": -20.09,
     "valor_hora": 480.0,
-    "progresso": "03 DE 03",
+    "valor_excedido": 9642.53,
+    "progresso": "MÊS 03 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 18/05/2026 a 17/06/2026",
-        "util": 17.07
+        "util": 17.075
       },
       {
         "rotulo": "Mês 02 - 18/06/2026 a 17/07/2026",
-        "util": 9.94
+        "util": 9.9417
       },
       {
         "rotulo": "Mês 03 - 18/07/2026 a 17/08/2026",
-        "util": 38.07
+        "util": 38.0719
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 65.0886
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "CNT COMÉRCIO LTDA",
+    "nome": "CNT Comércio LTDA",
     "pasta": "CNT",
     "arquivo": "SEMANA 11 DE 13- RELATÓRIO DE HORAS S&S - CNT COMÉRCIO LTDA - 01.09.2026 A 07.09.2026 (1).xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
-    "contratadas": 15.0,
+    "contratadas": 45.0,
     "utilizadas": 56.96,
-    "excedidas": 41.96,
-    "restantes": 0,
+    "excedidas": 11.96,
+    "restantes": -11.96,
     "valor_hora": 291.78,
+    "valor_excedido": 3489.46,
     "progresso": "SEMANA 11 DE 13",
     "serie": [
       {
@@ -262,43 +291,43 @@
       },
       {
         "rotulo": "Semana 2: 30/06/2026 a 06/07/2026",
-        "util": 0.99
+        "util": 0.995
       },
       {
         "rotulo": "Semana 3: 07/07/2026 a 13/07/2026",
-        "util": 15.48
+        "util": 15.485
       },
       {
         "rotulo": "Semana 4: 14/07/2026 a 20/07/2026",
-        "util": 16.02
+        "util": 16.0239
       },
       {
         "rotulo": "Semana 5: 21/07/2026 a 27/07/2026",
-        "util": 1.64
+        "util": 1.6414
       },
       {
         "rotulo": "Semana 6: 28/07/2026 a 03/08/2026",
-        "util": 2.88
+        "util": 2.8828
       },
       {
         "rotulo": "Semana 7: 04/08/2026 a 10/08/2026",
-        "util": 0.72
+        "util": 0.7172
       },
       {
         "rotulo": "Semana 8: 11/08/2026 a 17/08/2026",
-        "util": 1.22
+        "util": 1.2231
       },
       {
         "rotulo": "Semana 9: 18/08/2026 a 24/08/2026",
-        "util": 6.03
+        "util": 6.0319
       },
       {
         "rotulo": "Semana 10: 25/08/2026 a 31/08/2026",
-        "util": 3.05
+        "util": 3.0453
       },
       {
         "rotulo": "Semana 11: 01/09/2026 a 07/09/2026",
-        "util": 8.16
+        "util": 8.1636
       },
       {
         "rotulo": "Semana 12: 08/09/2026 a 14/09/2026",
@@ -310,11 +339,11 @@
       }
     ],
     "ok": true,
-    "obs": "Layout de listagem de tarefas; total de horas somado da coluna Timesheet. valor_hora = valor por hora excedida (R$291,78)."
+    "recalculado": true
   },
   {
-    "nome": "COSTA VERDE",
-    "pasta": "COSTA VERDE > 3º TRIMESTRE",
+    "nome": "Costa Verde Construtora LTDA",
+    "pasta": "COSTA VERDE",
     "arquivo": "MÊS 03 DE 03 - RELATÓRIO DE HORAS S&S - COSTA VERDE CONSTRUTORA LTDA - 09.09.2026 a 08.10.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
@@ -323,26 +352,32 @@
     "excedidas": 31.96,
     "restantes": -31.96,
     "valor_hora": 450.0,
+    "valor_excedido": 14382.12,
     "progresso": "MÊS 03 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 09/06/2026 a 08/07/2026",
-        "util": 43.03
+        "util": 43.0297
       },
       {
         "rotulo": "Mês 02 - 09/07/2026 a 08/08/2026",
-        "util": 18.93
+        "util": 18.9306
       },
       {
-        "rotulo": "Mês 03 - 09/09/2026 a 08/10/2026 (Fecham",
+        "rotulo": "Mês 03 - 09/09/2026 a 08/10/2026 (Fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 61.9603
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "DIGITALSAT DISTRIBUIDORA DE EQUIPAMENTOS ELETRONICOS SA",
-    "pasta": "DIGITALSAT / 2 SEMESTRE",
+    "nome": "Digitalsat Distribuidora de Equipamentos Eletrônicos SA",
+    "pasta": "DIGITALSAT",
     "arquivo": "MÊS 02 DE 06 - RELATÓRIO DE HORAS S&S - DIGITALSAT DISTRIBUIDORA DE EQUIPAMENTOS ELETRONICOS SA - 01.08.2026 A 31.08.2026.xlsx",
     "periodicidade": "Semestral",
     "meses": 6,
@@ -350,16 +385,17 @@
     "utilizadas": 58.21,
     "excedidas": 0.0,
     "restantes": 37.79,
-    "valor_hora": null,
-    "progresso": "02 DE 06",
+    "valor_hora": 400.0,
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 02 DE 06",
     "serie": [
       {
         "rotulo": "Mês 01 - 01/07/2026 até 31/07/2026",
-        "util": 33.42
+        "util": 33.4219
       },
       {
         "rotulo": "Mês 02 - 01/08/2026 até 31/08/2026",
-        "util": 24.79
+        "util": 24.7856
       },
       {
         "rotulo": "Mês 03 - 01/09/2026 até 30/09/2026",
@@ -376,12 +412,91 @@
       {
         "rotulo": "Mês 06 - 01/12/2026 até 31/12/2026",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 58.2075
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "ESTOPACK EMBALAGENS LTDA",
+    "nome": "DMG Prestadora de Serviços LTDA",
+    "pasta": "DMG",
+    "arquivo": "Semana 10 de 13 - Relatório de Horas - DMG PRESTADORA DE SERVICOS LTDA - 02.09.2026 a 08.09.2026.xlsx",
+    "periodicidade": "Trimestral",
+    "meses": 3,
+    "contratadas": 48.0,
+    "utilizadas": 92.44,
+    "excedidas": 44.44,
+    "restantes": -44.44,
+    "valor_hora": 400.0,
+    "valor_excedido": 17774.67,
+    "progresso": "SEMANA 10 DE 13",
+    "serie": [
+      {
+        "rotulo": "Semana 01 - 01/07/2026 a 07/07/2026",
+        "util": 11.5833
+      },
+      {
+        "rotulo": "Semana 02 - 08/07/2026 a 14/07/2026",
+        "util": 10.125
+      },
+      {
+        "rotulo": "Semana 03 - 15/07/2026 a 21/07/2026",
+        "util": 11.8583
+      },
+      {
+        "rotulo": "Semana 04 - 22/07/2026 a 28/07/2026",
+        "util": 11.5333
+      },
+      {
+        "rotulo": "Semana 05 - 29/07/2026 a 04/08/2026",
+        "util": 10.175
+      },
+      {
+        "rotulo": "Semana 06 - 05/08/2026 a 11/08/2026",
+        "util": 2.1333
+      },
+      {
+        "rotulo": "Semana 07 - 12/08/2026 a 18/08/2026",
+        "util": 5.0114
+      },
+      {
+        "rotulo": "Semana 08 - 19/08/2026 a 25/08/2026",
+        "util": 7.2583
+      },
+      {
+        "rotulo": "Semana 09 - 26/08/2026 a 01/09/2026",
+        "util": 17.2669
+      },
+      {
+        "rotulo": "Semana 10 - 02/09/2026 a 08/09/2026",
+        "util": 5.4917
+      },
+      {
+        "rotulo": "Semana 11 - 09/09/2026 a 15/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 12 - 16/09/2026 a 22/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "Semana 13 - 23/09/2026 a 30/09/2026",
+        "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 92.4367
+      }
+    ],
+    "ok": true,
+    "recalculado": false
+  },
+  {
+    "nome": "Estopack Embalagens LTDA",
     "pasta": "ESTOPACK",
     "arquivo": "08 RELATÓRIO DE HORAS - ESTOPACK EMBALAGENS LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Mensal",
@@ -391,12 +506,14 @@
     "excedidas": 0.0,
     "restantes": 7.41,
     "valor_hora": 450.0,
+    "valor_excedido": 0.0,
     "progresso": null,
     "serie": [],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "ETR ZION CONSTRUTORA E INCORPORADORA LTDA",
+    "nome": "ETR Zion Construtora e Incorporadora LTDA",
     "pasta": "ETR",
     "arquivo": "08 RELATÓRIO DE HORAS - ETR ZION CONSTRUTORA E INCORPORADORA LTDA- 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Mensal",
@@ -406,14 +523,16 @@
     "excedidas": 0.0,
     "restantes": 1.39,
     "valor_hora": 350.0,
+    "valor_excedido": 0.0,
     "progresso": null,
     "serie": [],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "FLUIR APOIO ADMINISTRATIVO EIRELI",
+    "nome": "Fluir Apoio Administrativo EIRELI",
     "pasta": "FLUIR APOIO",
-    "arquivo": "SEMANA 01 DE 04 - RELATÓRIO DE HORAS - FLUIR APOIO ADMINISTRATIVO EIRELI - 01.09.2026 a 07.09.2026.xlsx",
+    "arquivo": "SEMANA 05 DE 05 - RELATÓRIO DE HORAS - FLUIR APOIO ADMINISTRATIVO EIRELI - 29.06.2026 a 30.06.2026.xlsx",
     "periodicidade": "Mensal",
     "meses": 1,
     "contratadas": 8.0,
@@ -421,13 +540,15 @@
     "excedidas": 0.0,
     "restantes": 8.0,
     "valor_hora": 380.0,
-    "progresso": "01 DE 04",
+    "valor_excedido": 0.0,
+    "progresso": "SEMANA 05 DE 05",
     "serie": [],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "GFI FIRST INTERNATIONAL LTDA",
-    "pasta": "2 TRIMESTRE",
+    "nome": "GFI First International LTDA",
+    "pasta": "GFI FIRST INTERNATIONAL LTDA",
     "arquivo": "SEMANA 02 DE 13 - RELATÓRIO DE HORAS S&S - GFI FIRST INTERNATIONAL LTDA  - 01.09.2026 a 07.09.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
@@ -436,11 +557,12 @@
     "excedidas": 0.0,
     "restantes": 22.57,
     "valor_hora": 550.0,
+    "valor_excedido": 0.0,
     "progresso": "SEMANA 02 DE 13",
     "serie": [
       {
         "rotulo": "Semana 01 - 25/08/2026 a 31/08/2026",
-        "util": 1.43
+        "util": 1.4333
       },
       {
         "rotulo": "Semana 02 - 01/09/2026 a 07/09/2026",
@@ -487,14 +609,19 @@
         "util": 0.0
       },
       {
-        "rotulo": "Semana 13 - 17/11/2026 a 23/11/2026 (fec",
+        "rotulo": "Semana 13 - 17/11/2026 a 23/11/2026 (fechame",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 1.4333
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "GOLDEN IMOVEIS ITAPEMA LTDA",
+    "nome": "Golden Imóveis Itapema LTDA",
     "pasta": "GOLDEN",
     "arquivo": "08 RELATÓRIO DE HORAS - GOLDEN IMOVEIS ITAPEMA LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Mensal",
@@ -504,13 +631,15 @@
     "excedidas": 0.0,
     "restantes": 1.75,
     "valor_hora": 600.0,
+    "valor_excedido": 0.0,
     "progresso": null,
     "serie": [],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "HELI BRASIL - KMR GROUP LTDA",
-    "pasta": "3 ANO",
+    "nome": "Heli Brasil - KMR Group LTDA",
+    "pasta": "HELI",
     "arquivo": "SEMANA 23 DE 53 - RELATÓRIO DE HORAS S&S - HELI BRASIL - KMR GROUP LTDA - 31.08.2026 a 06.09.2026.xlsx",
     "periodicidade": "Anual",
     "meses": 12,
@@ -519,19 +648,20 @@
     "excedidas": 0.0,
     "restantes": 71.82,
     "valor_hora": 430.0,
+    "valor_excedido": 0.0,
     "progresso": "SEMANA 23 DE 53",
     "serie": [
       {
         "rotulo": "Semana 01 - 01/04/2026 a 05/04/2026",
-        "util": 5.71
+        "util": 5.7083
       },
       {
         "rotulo": "Semana 02 - 06/04/2026 a 12/04/2026",
-        "util": 1.87
+        "util": 1.8667
       },
       {
         "rotulo": "Semana 03 - 13/04/2026 a 19/04/2026",
-        "util": 10.33
+        "util": 10.3339
       },
       {
         "rotulo": "Semana 04 - 20/04/2026 a 26/04/2026",
@@ -543,7 +673,7 @@
       },
       {
         "rotulo": "Semana 06 - 04/05/2026 a 10/05/2026",
-        "util": 4.79
+        "util": 4.7872
       },
       {
         "rotulo": "Semana 07 - 11/05/2026 a 17/05/2026",
@@ -551,23 +681,23 @@
       },
       {
         "rotulo": "Semana 08 - 18/05/2026 a 24/05/2026",
-        "util": 11.83
+        "util": 11.8333
       },
       {
         "rotulo": "Semana 09 - 25/05/2026 a 31/05/2026",
-        "util": 0.82
+        "util": 0.8164
       },
       {
         "rotulo": "Semana 10 - 01/06/2026 a 07/06/2026",
-        "util": 9.84
+        "util": 9.8394
       },
       {
         "rotulo": "Semana 11 - 08/06/2026 a 14/06/2026",
-        "util": 4.89
+        "util": 4.8942
       },
       {
         "rotulo": "Semana 12 - 15/06/2026 a 21/06/2026",
-        "util": 1.63
+        "util": 1.6333
       },
       {
         "rotulo": "Semana 13 - 22/06/2026 a 28/06/2026",
@@ -579,11 +709,11 @@
       },
       {
         "rotulo": "Semana 15 - 06/07/2026 a 12/07/2026",
-        "util": 1.87
+        "util": 1.8667
       },
       {
         "rotulo": "Semana 16 - 13/07/2026 a 19/07/2026",
-        "util": 1.17
+        "util": 1.1667
       },
       {
         "rotulo": "Semana 17 - 20/07/2026 a 26/07/2026",
@@ -595,15 +725,15 @@
       },
       {
         "rotulo": "Semana 19 - 03/08/2026 a 09/08/2026",
-        "util": 4.23
+        "util": 4.2333
       },
       {
         "rotulo": "Semana 20 - 10/08/2026 a 16/08/2026",
-        "util": 0.37
+        "util": 0.3717
       },
       {
         "rotulo": "Semana 21 - 17/08/2026 a 23/08/2026",
-        "util": 5.93
+        "util": 5.9308
       },
       {
         "rotulo": "Semana 22 - 24/08/2026 a 30/08/2026",
@@ -611,7 +741,7 @@
       },
       {
         "rotulo": "Semana 23 - 31/08/2026 a 06/09/2026",
-        "util": 0.6
+        "util": 0.5958
       },
       {
         "rotulo": "Semana 24 - 07/09/2026 a 13/09/2026",
@@ -730,16 +860,21 @@
         "util": 0.0
       },
       {
-        "rotulo": "Semana 53 - 29/03/2027 a 31/03/2027 (fec",
+        "rotulo": "Semana 53 - 29/03/2027 a 31/03/2027 (fechame",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 72.1778
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "HIDRACON - SHP E HIDRAULICA PREDIAL LTDA",
-    "pasta": "HIDRACON / 2 TRIMESTRE",
-    "arquivo": "HIDRACON.xlsx",
+    "nome": "Hidracon - SHP e Hidráulica Predial LTDA",
+    "pasta": "HIDRACON",
+    "arquivo": "MÊS 03 DE 03 - RELATÓRIO DE HORAS S&S - HIDRACON - SHP E HIDRAULICA PREDIAL LTDA - 18.07.2026 a 17.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 15.0,
@@ -747,27 +882,33 @@
     "excedidas": 0.0,
     "restantes": 10.16,
     "valor_hora": 500.0,
-    "progresso": "03 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 03 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 18/05/2026 a 17/06/2026",
-        "util": 1.98
+        "util": 1.9833
       },
       {
         "rotulo": "Mês 02 - 18/06/2026 a 17/07/2026",
-        "util": 2.84
+        "util": 2.8417
       },
       {
-        "rotulo": "Mês 03 - 18/07/2026 a 17/08/2026 (fecham",
-        "util": 0.02
+        "rotulo": "Mês 03 - 18/07/2026 a 17/08/2026 (fechamento",
+        "util": 0.0167
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 4.8417
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "INOVEN COMÉRCIO INTERNACIONAL LTDA",
-    "pasta": "INOVEN / 2 SEMESTRE",
-    "arquivo": "INOVEN.xlsx",
+    "nome": "Inoven Comércio Internacional LTDA",
+    "pasta": "INOVEN",
+    "arquivo": "MÊS 04 DE 06 - RELATÓRIO DE HORAS S&S - INOVEN COMÉRCIO INTERNACIONAL LTDA - 22.06.2026 A 21.07.2026.xlsx",
     "periodicidade": "Semestral",
     "meses": 6,
     "contratadas": 48.0,
@@ -775,39 +916,40 @@
     "excedidas": 7.36,
     "restantes": -7.36,
     "valor_hora": 500.0,
-    "progresso": "04 DE 06",
+    "valor_excedido": 3680.7,
+    "progresso": "MÊS 04 DE 06",
     "serie": [
       {
         "rotulo": "Mês 01 — 22/04/2026 a 21/05/2026",
-        "util": 34.27
+        "util": 34.2717
       },
       {
         "rotulo": "Mês 02 — 22/05/2026 a 21/06/2026",
-        "util": 3.52
+        "util": 3.5228
       },
       {
         "rotulo": "Mês 03 — 22/06/2026 a 21/07/2026",
-        "util": 9.09
+        "util": 9.0872
       },
       {
         "rotulo": "Mês 04 — 22/07/2026 a 21/08/2026",
-        "util": 8.48
+        "util": 8.4797
       },
       {
         "rotulo": "Mês 05 — 22/08/2026 a 21/09/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 06 — 22/09/2026 a 21/10/2026 (fecham",
+        "rotulo": "Mês 06 — 22/09/2026 a 21/10/2026 (fechamento",
         "util": 0.0
       }
     ],
     "ok": true,
-    "obs": "Bloco-resumo do periodo (contratadas/utilizadas/excedidas/restantes) em BRANCO na planilha; valores derivados: contratadas=8h/mes x 6 = 48h; utilizadas=soma da serie=55.36. Workbook reutilizado contem abas extras (VERTICALL-ANUAL, HELI, Planilha1/3)."
+    "recalculado": true
   },
   {
-    "nome": "JORCELINA DA SILVA LTDA",
-    "pasta": "3 TRIMESTRE",
+    "nome": "Jorcelina da Silva LTDA",
+    "pasta": "JORCELINA",
     "arquivo": "MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - JORCELINA DA SILVA LTDA - 12.08.2026 a 11.09.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
@@ -816,55 +958,67 @@
     "excedidas": 0.0,
     "restantes": 22.74,
     "valor_hora": 350.0,
+    "valor_excedido": 0.0,
     "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 — 12/07/2026 a 11/08/2026",
-        "util": 0.01
+        "util": 0.0083
       },
       {
         "rotulo": "Mês 02 — 12/08/2026 a 11/09/2026",
-        "util": 7.25
+        "util": 7.2503
       },
       {
-        "rotulo": "Mês 03 — 12/09/2026 a 11/10/2026 (fecham",
+        "rotulo": "Mês 03 — 12/09/2026 a 11/10/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 7.2586
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "KALISKA TÊXTIL LTDA",
-    "pasta": "KALISKA / TRIMESTRE",
-    "arquivo": "MÊS 01 DE 03 - RELATÓRIO DE HORAS S&S - KALISKA TÊXTIL LTDA - 01.08.2026 a 31.08.2026.xlsx",
+    "nome": "Kaliska Têxtil LTDA",
+    "pasta": "KALISKA",
+    "arquivo": "MÊS 03 DE 03 - RELATÓRIO DE HORAS S&S - KALISKA TÊXTIL LTDA - 01.07.2026 a 31.07.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 36.0,
-    "utilizadas": 20.56,
-    "excedidas": 0.0,
-    "restantes": 15.44,
+    "utilizadas": 85.31,
+    "excedidas": 49.31,
+    "restantes": -49.31,
     "valor_hora": 450.0,
-    "progresso": "01 DE 03",
+    "valor_excedido": 22188.38,
+    "progresso": "MÊS 03 DE 03",
     "serie": [
       {
-        "rotulo": "Mês 01 - 01/08/2026 a 31/08/2026",
-        "util": 20.56
+        "rotulo": "Mês 01 - 01/05/2026 a 31/05/2026",
+        "util": 17.4381
       },
       {
-        "rotulo": "Mês 02 - 01/09/2026 a 30/09/2026",
-        "util": 0.0
+        "rotulo": "Mês 02 - 01/06/2026 a 30/06/2026",
+        "util": 22.8836
       },
       {
-        "rotulo": "Mês 03 - 01/10/2026 a 31/10/2026 (fecham",
-        "util": 0.0
+        "rotulo": "Mês 03 - 01/07/2026 a 31/07/2026 (fechamento",
+        "util": 44.9858
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 85.3075
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "KATA FIGOS PARTICIPAÇÕES LTDA",
-    "pasta": "3 TRIMESTRE",
-    "arquivo": "Semana 10 DE 13 - RELATÓRIO DE HORAS S&S - KATA FIGOS PARTICIPAÇÕES LTDA - 03.09.2026 a 09.09.2026",
+    "nome": "Kata Figos Participações LTDA",
+    "pasta": "KATA FIGOS",
+    "arquivo": "Semana 10 DE 13 - RELATÓRIO DE HORAS S&S - KATA FIGOS PARTICIPAÇÕES LTDA - 03.09.2026 a 09.09.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 18.0,
@@ -872,6 +1026,7 @@
     "excedidas": 45.19,
     "restantes": -45.19,
     "valor_hora": 400.0,
+    "valor_excedido": 18077.56,
     "progresso": "SEMANA 10 DE 13",
     "serie": [
       {
@@ -880,11 +1035,11 @@
       },
       {
         "rotulo": "Semana 02 — 09/07/2026 a 15/07/2026",
-        "util": 9.94
+        "util": 9.9417
       },
       {
         "rotulo": "Semana 03 — 16/07/2026 a 22/07/2026",
-        "util": 0.72
+        "util": 0.7167
       },
       {
         "rotulo": "Semana 04 — 23/07/2026 a 29/07/2026",
@@ -892,7 +1047,7 @@
       },
       {
         "rotulo": "Semana 05 — 30/07/2026 a 05/08/2026",
-        "util": 23.05
+        "util": 23.045
       },
       {
         "rotulo": "Semana 06 — 06/08/2026 a 12/08/2026",
@@ -900,7 +1055,7 @@
       },
       {
         "rotulo": "Semana 07 — 13/08/2026 a 19/08/2026",
-        "util": 9.52
+        "util": 9.5167
       },
       {
         "rotulo": "Semana 08 — 20/08/2026 a 26/08/2026",
@@ -908,11 +1063,11 @@
       },
       {
         "rotulo": "Semana 09 — 27/08/2026 a 02/09/2026",
-        "util": 8.7
+        "util": 8.6967
       },
       {
         "rotulo": "Semana 10 — 03/09/2026 a 09/09/2026",
-        "util": 6.78
+        "util": 6.7772
       },
       {
         "rotulo": "Semana 11 — 10/09/2026 a 16/09/2026",
@@ -925,14 +1080,19 @@
       {
         "rotulo": "Semana 13 — 24/09/2026 a 01/10/2026",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 63.1939
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "MALLON EMPREENDIMENTOS LTDA",
-    "pasta": "MALLON > GRUPO MALLON F.O > 3 TRIMESTRE",
-    "arquivo": "mallon.xlsx",
+    "nome": "Mallon Empreendimentos LTDA",
+    "pasta": "MALLON",
+    "arquivo": "GRUPO MALLON F.O - MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - MALLON EMPREENDIMENTOS LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 18.0,
@@ -940,25 +1100,31 @@
     "excedidas": 0.0,
     "restantes": 1.26,
     "valor_hora": 500.0,
+    "valor_excedido": 0.0,
     "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 de 03 - 01/07/2026 a 31/07/2026",
-        "util": 10.83
+        "util": 10.8347
       },
       {
         "rotulo": "Mês 02 de 03 - 01/08/2026 a 31/08/2026",
-        "util": 5.9
+        "util": 5.9019
       },
       {
-        "rotulo": "Mês 03 de 03 - 01/09/2026 a 30/09/2026 (",
+        "rotulo": "Mês 03 de 03 - 01/09/2026 a 30/09/2026 (fech",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 16.7367
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "MANSOUR INVESTIMENTOS IMOBILIARIOS LTDA",
+    "nome": "Mansour Investimentos Imobiliários LTDA",
     "pasta": "MANSOUR",
     "arquivo": "MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - MANSOUR INVESTIMENTOS IMOBILIARIOS LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Trimestral",
@@ -968,7 +1134,8 @@
     "excedidas": 0.0,
     "restantes": 12.0,
     "valor_hora": 550.0,
-    "progresso": "02 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 01/07/2026 a 31/07/2026",
@@ -979,35 +1146,19 @@
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 01/09/2026 a 30/09/2026 (fecham",
+        "rotulo": "Mês 03 - 01/09/2026 a 30/09/2026 (fechamento",
+        "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
         "util": 0.0
       }
     ],
-    "ok": true
-  },
-  {
-    "nome": "NEXT SHIPPING LOGÍSTICA INTERNACIONAL LTDA",
-    "pasta": "NEXTSHIPPING",
-    "arquivo": "MÊS 08 - RELATÓRIO DE HORAS S&S - NEXT SHIPPING LOGÍSTICA -  01.08.2026 a 31.08.2026.xlsx",
-    "periodicidade": "Mensal",
-    "meses": 1,
-    "contratadas": null,
-    "utilizadas": 4.12,
-    "excedidas": null,
-    "restantes": null,
-    "valor_hora": null,
-    "progresso": "MÊS 08",
-    "serie": [
-      {
-        "rotulo": "01/08/2026 a 31/08/2026",
-        "util": 4.12
-      }
-    ],
     "ok": true,
-    "obs": "Relatório mensal em layout de listagem; planilha não traz horas contratadas nem valor/hora, apenas total de horas utilizadas."
+    "recalculado": false
   },
   {
-    "nome": "NOSTRACON CONSTRUTORA E INCORPORADORA",
+    "nome": "Nostracon Construtora e Incorporadora LTDA",
     "pasta": "NOSTRACON CONSTRUTORA E INCORPORADORA",
     "arquivo": "SEMANA 12 DE 13 - RELATÓRIO DE HORAS S&S - NOSTRACON CONSTRUTORA E INCORPORADORA LTDA  - 03.09.2026 a 09.09.2026.xlsx",
     "periodicidade": "Trimestral",
@@ -1017,67 +1168,73 @@
     "excedidas": 96.17,
     "restantes": -96.17,
     "valor_hora": 500.0,
+    "valor_excedido": 48086.81,
     "progresso": "SEMANA 12 DE 13",
     "serie": [
       {
-        "rotulo": "Semana 01 - 18/06/2026 a 24/06/2026",
-        "util": 3.49
+        "rotulo": "Semana 01 – 18/06/2026 a 24/06/2026",
+        "util": 3.4903
       },
       {
-        "rotulo": "Semana 02 - 25/06/2026 a 01/07/2026",
-        "util": 9.3
+        "rotulo": "Semana 02 – 25/06/2026 a 01/07/2026",
+        "util": 9.2964
       },
       {
-        "rotulo": "Semana 03 - 02/07/2026 a 08/07/2026",
-        "util": 38.94
+        "rotulo": "Semana 03 – 02/07/2026 a 08/07/2026",
+        "util": 38.9431
       },
       {
-        "rotulo": "Semana 04 - 09/07/2026 a 15/07/2026",
-        "util": 5.96
+        "rotulo": "Semana 04 – 09/07/2026 a 15/07/2026",
+        "util": 5.9644
       },
       {
-        "rotulo": "Semana 05 - 16/07/2026 a 22/07/2026",
-        "util": 6.67
+        "rotulo": "Semana 05 – 16/07/2026 a 22/07/2026",
+        "util": 6.6686
       },
       {
-        "rotulo": "Semana 06 - 23/07/2026 a 29/07/2026",
-        "util": 14.88
+        "rotulo": "Semana 06 – 23/07/2026 a 29/07/2026",
+        "util": 14.8814
       },
       {
-        "rotulo": "Semana 07 - 30/07/2026 a 05/08/2026",
-        "util": 4.4
+        "rotulo": "Semana 07 – 30/07/2026 a 05/08/2026",
+        "util": 4.3953
       },
       {
-        "rotulo": "Semana 08 - 06/08/2026 a 12/08/2026",
-        "util": 2.21
+        "rotulo": "Semana 08 – 06/08/2026 a 12/08/2026",
+        "util": 2.2061
       },
       {
-        "rotulo": "Semana 09 - 13/08/2026 a 19/08/2026",
-        "util": 10.38
+        "rotulo": "Semana 09 – 13/08/2026 a 19/08/2026",
+        "util": 10.385
       },
       {
-        "rotulo": "Semana 10 - 20/08/2026 a 26/08/2026",
-        "util": 19.9
+        "rotulo": "Semana 10 – 20/08/2026 a 26/08/2026",
+        "util": 19.8972
       },
       {
-        "rotulo": "Semana 11 - 27/08/2026 a 02/09/2026",
-        "util": 7.07
+        "rotulo": "Semana 11 – 27/08/2026 a 02/09/2026",
+        "util": 7.0733
       },
       {
-        "rotulo": "Semana 12 - 03/09/2026 a 09/09/2026",
-        "util": 8.97
+        "rotulo": "Semana 12 – 03/09/2026 a 09/09/2026",
+        "util": 8.9725
       },
       {
-        "rotulo": "Semana 13 - 10/09/2026 a 17/09/2026",
+        "rotulo": "Semana 13 – 10/09/2026 a 17/09/2026",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 132.1736
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "PH PARTS",
+    "nome": "PH Parts Indústria e Comércio de Peças LTDA",
     "pasta": "PH PARTS",
-    "arquivo": "Semana 16 DE 27 - RELATÓRIO DE HORAS S&S -PH PARTS INDÚSTRIA E COMÉRCIO DE PEÇAS LTDA - 02/09/2026 a 08/09/2026.xlsx",
+    "arquivo": "Semana 16 DE 27 - RELATÓRIO DE HORAS S&S -PH PARTS INDÚSTRIA E COMÉRCIO DE PEÇAS LTDA - 02_09_2026 a 08_09_2026.xlsx",
     "periodicidade": "Semestral",
     "meses": 6,
     "contratadas": 60.0,
@@ -1085,7 +1242,8 @@
     "excedidas": 0.0,
     "restantes": 43.03,
     "valor_hora": 500.0,
-    "progresso": "SEMANA 16 DE 26",
+    "valor_excedido": 0.0,
+    "progresso": "SEMANA 16 DE 27",
     "serie": [
       {
         "rotulo": "Semana 01 — 20/05/2026 a 26/05/2026",
@@ -1093,7 +1251,7 @@
       },
       {
         "rotulo": "Semana 02 — 27/05/2026 a 02/06/2026",
-        "util": 9.62
+        "util": 9.6167
       },
       {
         "rotulo": "Semana 03 — 03/06/2026 a 09/06/2026",
@@ -1105,11 +1263,11 @@
       },
       {
         "rotulo": "Semana 05 — 17/06/2026 a 23/06/2026",
-        "util": 0.58
+        "util": 0.5833
       },
       {
         "rotulo": "Semana 06 — 24/06/2026 a 30/06/2026",
-        "util": 4.85
+        "util": 4.8489
       },
       {
         "rotulo": "Semana 07 — 01/07/2026 a 07/07/2026",
@@ -1121,7 +1279,7 @@
       },
       {
         "rotulo": "Semana 09 — 15/07/2026 a 21/07/2026",
-        "util": 0.08
+        "util": 0.0833
       },
       {
         "rotulo": "Semana 10 — 22/07/2026 a 28/07/2026",
@@ -1145,7 +1303,7 @@
       },
       {
         "rotulo": "Semana 15 — 26/08/2026 a 01/09/2026",
-        "util": 1.33
+        "util": 1.3333
       },
       {
         "rotulo": "Semana 16 — 02/09/2026 a 08/09/2026",
@@ -1190,43 +1348,49 @@
       {
         "rotulo": "Semana 26 — 11/11/2026 a 20/11/2026",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 16.9656
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "PRAIHOLL EMPREENDIMENTOS LTDA",
+    "nome": "Praiholl Empreendimentos LTDA",
     "pasta": "PRAIHOLL",
     "arquivo": "01 DE 03 - RELATÓRIO DE HORAS S&S - PRAIHOLL EMPREENDIMENTOS LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
-    "contratadas": null,
+    "contratadas": 108.0,
     "utilizadas": 14.6,
     "excedidas": 0.0,
-    "restantes": null,
+    "restantes": 93.4,
     "valor_hora": 310.0,
+    "valor_excedido": null,
     "progresso": "01 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 01/08/2026 a 31/08/2026",
-        "util": 14.6
+        "util": 14.6014
       },
       {
         "rotulo": "Mês 02 - 01/09/2026 a 30/09/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 01/10/2026 a 31/10/2026 (fecham",
+        "rotulo": "Mês 03 - 01/10/2026 a 31/10/2026 (fechamento",
         "util": 0.0
       }
     ],
     "ok": true,
-    "obs": "Bloco de resumo do período está EM BRANCO na planilha (HORAS CONTRATADAS/UTILIZADAS/RESTANTES do período vazias). HORAS CONTRATADAS mensal no topo=36. utilizadas aqui = soma da série (14.6, Mês 01)."
+    "recalculado": true
   },
   {
-    "nome": "PROSOLLO FERTILIZANTES LTDA",
-    "pasta": "PROSOLLO / 3º TRIMESTRE",
-    "arquivo": "PROSOLLO.xlsx",
+    "nome": "Prosollo Fertilizantes LTDA",
+    "pasta": "PROSOLLO",
+    "arquivo": "MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - PROSOLLO FERTILIZANTES LTDA - 22.07.2026 a 21.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 120.0,
@@ -1234,25 +1398,31 @@
     "excedidas": 0.0,
     "restantes": 58.23,
     "valor_hora": 500.0,
-    "progresso": "02 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 de 03: 22/06/2026 a 21/07/2026",
-        "util": 33.57
+        "util": 33.5714
       },
       {
         "rotulo": "Mês 02 de 03: 22/07/2026 a 21/08/2026",
-        "util": 28.2
+        "util": 28.2008
       },
       {
-        "rotulo": "Mês 03 de 03: 22/08/2026 a 21/09/2026 (f",
+        "rotulo": "Mês 03 de 03: 22/08/2026 a 21/09/2026 (fecha",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 61.7722
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "PZ EMPREENDIMENTOS LTDA",
+    "nome": "PZ Empreendimentos LTDA",
     "pasta": "PZ",
     "arquivo": "Mês 02 de 06 - Relatório de Horas - PZ EMPREENDIMENTOS LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Semestral",
@@ -1261,16 +1431,17 @@
     "utilizadas": 104.71,
     "excedidas": 0.0,
     "restantes": 57.29,
-    "valor_hora": null,
-    "progresso": "02 DE 06",
+    "valor_hora": 450.0,
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 02 DE 06",
     "serie": [
       {
         "rotulo": "Mês 01 - 01/07/2026 a 31/07/2026",
-        "util": 56.85
+        "util": 56.8522
       },
       {
         "rotulo": "Mês 02 - 01/08/2026 a 31/08/2026",
-        "util": 47.85
+        "util": 47.8531
       },
       {
         "rotulo": "Mês 03 - 01/09/2026 a 30/09/2026",
@@ -1285,16 +1456,21 @@
         "util": 0.0
       },
       {
-        "rotulo": "Mês 06 - 01/12/2026 a 31/12/2026 (fechamento)",
+        "rotulo": "Mês 06 - 01/12/2026 a 31/12/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 104.7053
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "RG ITAPEMA EMPREENDIMENTOS SPE LTDA",
-    "pasta": "RG ITAPEMA > 3 TRIMESTRE - 17/06/2026 A 16/09/2026",
-    "arquivo": "rgitapema.xlsx",
+    "nome": "RG Itapema Empreendimentos SPE LTDA",
+    "pasta": "RG ITAPEMA",
+    "arquivo": "MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - RG ITAPEMA EMPREENDIMENTOS SPE LTDA - 17.07.2026 a 16.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 15.0,
@@ -1302,27 +1478,33 @@
     "excedidas": 0.0,
     "restantes": 5.21,
     "valor_hora": 500.0,
+    "valor_excedido": 0.0,
     "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 17/06/2026 a 16/07/2026",
-        "util": 9.16
+        "util": 9.1569
       },
       {
         "rotulo": "Mês 02 - 17/07/2026 a 16/08/2026",
-        "util": 0.63
+        "util": 0.6333
       },
       {
-        "rotulo": "Mês 03 - 17/08/2026 a 16/09/2026 (fecham",
+        "rotulo": "Mês 03 - 17/08/2026 a 16/09/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 9.7903
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "RIO URUGUAI DE EMPRESAS ASOCIADAS CENTRAL ARGENTINO E EL DORADO LTDA",
-    "pasta": "RIO URUGUAI / 2º TRIMESTRE (26/05/2026 a 25/08/2026)",
-    "arquivo": "RIO_URUGUAI.xlsx",
+    "nome": "Rio Uruguai de Empresas Asociadas LTDA",
+    "pasta": "RIO URUGUAI",
+    "arquivo": "MÊS 03 DE 03 - RELATÓRIO DE HORAS S&S - RIO URUGUAI DE EMPRESAS ASOCIADAS CENTRAL ARGENTINO E EL DORADO LTDA - 26.07.2026 a 25.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 36.0,
@@ -1330,7 +1512,8 @@
     "excedidas": 0.0,
     "restantes": 36.0,
     "valor_hora": 550.0,
-    "progresso": "03 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 03 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 26/05/2026 a 25/06/2026",
@@ -1341,15 +1524,20 @@
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 26/07/2026 a 25/08/2026 (fecham",
+        "rotulo": "Mês 03 - 26/07/2026 a 25/08/2026 (fechamento",
+        "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
         "util": 0.0
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "RIVIERA EMPREENDIMENTOS IMOBILIARIOS LTDA",
-    "pasta": "3 TRIMESTRE",
+    "nome": "Riviera Empreendimentos Imobiliários LTDA",
+    "pasta": "RIVIERA",
     "arquivo": "MÊS 01 DE 03-(SEMANA 04 DE 13) - RELATÓRIO DE HORAS S&S - RIVIERA EMPREENDIMENTOS IMOBILIARIOS LTDA - 03.09.2026 a 09.09.2026 .xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
@@ -1358,66 +1546,72 @@
     "excedidas": 0.0,
     "restantes": 239.02,
     "valor_hora": 250.0,
-    "progresso": "SEMANA 04 DE 13",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 01 DE 03",
     "serie": [
       {
-        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana",
+        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana 01 ",
         "util": 16.55
       },
       {
-        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana",
-        "util": 15.76
+        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana 02 ",
+        "util": 15.7586
       },
       {
-        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana",
-        "util": 17.79
+        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana 03 ",
+        "util": 17.7917
       },
       {
-        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana",
-        "util": 10.88
+        "rotulo": "Mês 01 - 13/08/2026 a 09/09/2026 (Semana 04 ",
+        "util": 10.8758
       },
       {
-        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana",
+        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana 05 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana",
+        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana 06 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana",
+        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana 07 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana",
+        "rotulo": "Mês 02 - 10/09/2026 a 07/10/2026 (Semana 08 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana",
+        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana 09 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana",
+        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana 10 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana",
+        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana 11 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana",
+        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana 12 ",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana",
+        "rotulo": "Mês 03 - 08/10/2026 a 11/11/2026 (Semana 13 ",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 60.9761
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "RS CONCEPT PROJETOS E ARQUITETURA LTDA",
-    "pasta": "2 SEMESTRE",
+    "nome": "RS Concept Projetos e Arquitetura LTDA",
+    "pasta": "RS CONCEPT",
     "arquivo": "MÊS 04 DE 06 - RELATÓRIO DE HORAS S&S - RS CONCEPT PROJETOS E ARQUITETURA LTDA - 14.08.2026 a 13.09.2026.xlsx",
     "periodicidade": "Semestral",
     "meses": 6,
@@ -1426,6 +1620,7 @@
     "excedidas": 0.0,
     "restantes": 18.01,
     "valor_hora": 470.0,
+    "valor_excedido": 0.0,
     "progresso": "MÊS 04 DE 06",
     "serie": [
       {
@@ -1438,27 +1633,32 @@
       },
       {
         "rotulo": "Mês 03 - 14/07/2026 a 13/08/2026",
-        "util": 9.52
+        "util": 9.5167
       },
       {
         "rotulo": "Mês 04 - 14/08/2026 a 13/09/2026",
-        "util": 4.97
+        "util": 4.9739
       },
       {
         "rotulo": "Mês 05 - 14/09/2026 a 13/10/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 06 - 14/10/2026 a 13/11/2026 (fecham",
+        "rotulo": "Mês 06 - 14/10/2026 a 13/11/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 17.9906
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "SAAY'S SOLUCOES AMBIENTAIS LTDA",
+    "nome": "Saay's Soluções Ambientais LTDA",
     "pasta": "SAAYS SOLUÇÕES",
-    "arquivo": "MÊS 01 DE 03 - RELATÓRIO DE HORAS S&S - SAAY'S SOLUCOES AMBIENTAIS LTDA - 29.07.2026 a 28.08.2026.xlsx",
+    "arquivo": "MÊS 01 DE 03 - RELATÓRIO DE HORAS S&S - SAAY_S SOLUCOES AMBIENTAIS LTDA - 29.07.2026 a 28.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 180.0,
@@ -1466,25 +1666,31 @@
     "excedidas": 0.0,
     "restantes": 111.78,
     "valor_hora": 350.0,
-    "progresso": "01 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 01 DE 03",
     "serie": [
       {
         "rotulo": "Mès 01 de 03 - 29/07/2026 a 28/08/2026",
-        "util": 68.22
+        "util": 68.2186
       },
       {
         "rotulo": "Mês 02 de 03 - 29/08/2026 a 28/09/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 de 03 -  29/09/2026 a 28/10/2026 ",
+        "rotulo": "Mês 03 de 03 -  29/09/2026 a 28/10/2026 (fec",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 68.2186
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "SETE MARES AGENCIA CONSULTORA DE DESPACHOS ADUANEIROS LTDA - GRUPO COMEX",
+    "nome": "Sete Mares Agência Consultora de Despachos Aduaneiros LTDA (Grupo Comex)",
     "pasta": "SETE MARES - COMEX",
     "arquivo": "08 RELATÓRIO DE HORAS - SETE MARES AGENCIA CONSULTORA DE DESPACHOS ADUANEIROS LTDA - GRUPO COMEX - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Mensal",
@@ -1492,74 +1698,82 @@
     "contratadas": 12.0,
     "utilizadas": 39.77,
     "excedidas": 27.77,
-    "restantes": 0.0,
+    "restantes": 27.77,
     "valor_hora": 350.0,
+    "valor_excedido": 9720.57,
     "progresso": null,
     "serie": [],
     "ok": true,
-    "obs": "Planilha traz HORAS RESTANTES=27.77 (espelha as excedidas, bug do template); real=0 pois houve excedente. Valor das horas excedidas na planilha=R$9.720,57."
+    "recalculado": false
   },
   {
-    "nome": "SILVEIRA NOVOS NEGÓCIOS",
-    "pasta": "SILVEIRA NOVOS NEGÓCIOS (planilha solta - MÊS 03 DE 03)",
-    "arquivo": "silveira_m03.xlsx",
+    "nome": "Silveira Novos Negócios",
+    "pasta": "SILVEIRA NOVOS NEGÓCIOS",
+    "arquivo": "MÊS 03 DE 03 - RELATÓRIO DE HORAS S&S - SILVEIRA NOVOS NEGÓCIOS - 02.03.2026 a 01.04.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 15.0,
     "utilizadas": 91.87,
     "excedidas": 76.87,
-    "restantes": null,
+    "restantes": -76.87,
     "valor_hora": 500.0,
+    "valor_excedido": 38433.75,
     "progresso": "MÊS 03 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 02/01/2026 a 01/02/2026",
-        "util": 29.48
+        "util": 29.4753
       },
       {
         "rotulo": "Mês 02 - 02/02/2026 a 01/03/2026",
-        "util": 26.14
+        "util": 26.1411
       },
       {
-        "rotulo": "Mês 03 - 02/03/2026 a 01/04/2026 (fecham",
-        "util": 36.25
+        "rotulo": "Mês 03 - 02/03/2026 a 01/04/2026 (fechamento",
+        "util": 36.2511
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 91.8675
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": true
   },
   {
-    "nome": "SUNPRIME",
-    "pasta": "SUNPRIME > 1 TRIMESTRE",
+    "nome": "Sunprime Empreendimentos",
+    "pasta": "SUNPRIME",
     "arquivo": "MÊS 01 E 02 DE 03 - RELATÓRIO DE HORAS S&S - SUNPRIME EMPREENDIMENTOS - 08.07.2026 a 08.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
-    "contratadas": 12.0,
+    "contratadas": 36.0,
     "utilizadas": 28.24,
     "excedidas": 0.0,
-    "restantes": -16.24,
+    "restantes": 7.76,
     "valor_hora": 250.0,
-    "progresso": "MÊS 02 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 01 E 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 de 03 - 08/07/2026 a 08/08/2026",
-        "util": 14.35
+        "util": 14.3494
       },
       {
         "rotulo": "Mês 02 de 03 - 09/08/2026 a 08/09/2026",
-        "util": 13.89
+        "util": 13.8931
       },
       {
-        "rotulo": "Mês 03 de 03 - 09/09/2026 a 08/10/2026 (",
+        "rotulo": "Mês 03 de 03 - 09/09/2026 a 08/10/2026 (fech",
         "util": 0.0
       }
     ],
     "ok": true,
-    "obs": "Bloco-resumo do periodo (utilizadas/restantes) veio VAZIO no arquivo; utilizadas somada da serie mensal (14.35+13.89+0). Contratadas=12h e valor/hora=250 do bloco superior. Excedidas=0 conforme celula do arquivo."
+    "recalculado": true
   },
   {
-    "nome": "TRANSPORTES BRUSVILLE LTDA",
-    "pasta": "BRUSVILLE > 3 ANO",
-    "arquivo": "brusville.xlsx",
+    "nome": "Transportes Brusville LTDA",
+    "pasta": "BRUSVILLE",
+    "arquivo": "MÊS 04 DE 12 - RELATÓRIO DE HORAS S&S - TRANSPORTES BRUSVILLE LTDA - 17.07.2026 a 16.08.2026.xlsx",
     "periodicidade": "Anual",
     "meses": 12,
     "contratadas": 144.0,
@@ -1567,6 +1781,7 @@
     "excedidas": 0.0,
     "restantes": 138.33,
     "valor_hora": 400.0,
+    "valor_excedido": 0.0,
     "progresso": "MÊS 04 DE 12",
     "serie": [
       {
@@ -1575,11 +1790,11 @@
       },
       {
         "rotulo": "Mês 02 - 17/05/2026 a 16/06/2026",
-        "util": 3.01
+        "util": 3.0147
       },
       {
         "rotulo": "Mês 03 - 17/06/2026 a 16/07/2026",
-        "util": 2.61
+        "util": 2.6092
       },
       {
         "rotulo": "Mês 04 - 17/07/2026 a 16/08/2026",
@@ -1614,16 +1829,21 @@
         "util": 0.0
       },
       {
-        "rotulo": "Mês 12 - 17/03/2027 a 16/04/2027 (fecham",
+        "rotulo": "Mês 12 - 17/03/2027 a 16/04/2027 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 5.6739
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "VERTICALL CONSTRUTORA E INCORPORADORA LTDA",
-    "pasta": "VERTICALL (planilha solta)",
-    "arquivo": "verticall.xlsx",
+    "nome": "Verticall Construtora e Incorporadora LTDA",
+    "pasta": "VERTICALL",
+    "arquivo": "03 RELATÓRIO DE HORAS - VERTICALL CONSTRUTORA E INCORPORADORA LTDA - 01.03.2026 a 31.03.2026.xlsx",
     "periodicidade": "Mensal",
     "meses": 1,
     "contratadas": 18.0,
@@ -1631,14 +1851,16 @@
     "excedidas": 0.0,
     "restantes": 18.0,
     "valor_hora": 300.0,
+    "valor_excedido": 0.0,
     "progresso": null,
     "serie": [],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "VOLTOLINI CAMPOS LTDA",
-    "pasta": "VOLTOLINI (planilha solta)",
-    "arquivo": "voltolini.xlsx",
+    "nome": "Voltolini Campos LTDA",
+    "pasta": "VOLTOLINI",
+    "arquivo": "MÊS 01,02,03,04 DE 06 - RELATÓRIO DE HORAS S&S - VOLTOLINI CAMPOS LTDA  - 25.02.2026 A 24.05.2026.xlsx",
     "periodicidade": "Semestral",
     "meses": 6,
     "contratadas": 36.0,
@@ -1646,15 +1868,16 @@
     "excedidas": 0.0,
     "restantes": 11.84,
     "valor_hora": 470.0,
-    "progresso": "MÊS 04 DE 06",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 01,02,03,04 DE 06",
     "serie": [
       {
         "rotulo": "Mês 01 – 25/01/2026 a 24/02/2026",
-        "util": 18.13
+        "util": 18.1311
       },
       {
         "rotulo": "Mês 02 – 25/02/2026 a 24/03/2026",
-        "util": 6.03
+        "util": 6.0253
       },
       {
         "rotulo": "Mês 03 – 25/03/2026 a 24/04/2026",
@@ -1669,43 +1892,54 @@
         "util": 0.0
       },
       {
-        "rotulo": "Mês 06 – 25/06/2026 a 24/07/2026 (fecham",
+        "rotulo": "Mês 06 – 25/06/2026 a 24/07/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 24.1564
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "YANY ESQUADRIAS DE MADEIRA LTDA",
-    "pasta": "YANY / 3º TRIMESTRE",
-    "arquivo": "YANY.xlsx",
+    "nome": "Yany Esquadrias de Madeira LTDA",
+    "pasta": "YANY",
+    "arquivo": "MÊS 01 DE 03 - RELATÓRIO DE HORAS S&S - YANY ESQUADRIAS DE MADEIRA LTDA - 21.06.2026 a 20.07.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
     "contratadas": 21.0,
     "utilizadas": 7.78,
     "excedidas": 0.0,
     "restantes": 13.22,
-    "valor_hora": null,
-    "progresso": "01 DE 03",
+    "valor_hora": 510.0,
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 01 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 — 21/07/2026 a 20/08/2026",
-        "util": 7.78
+        "util": 7.7797
       },
       {
         "rotulo": "Mês 02 — 21/08/2026 a 20/09/2026",
         "util": 0.0
       },
       {
-        "rotulo": "Mês 03 — 21/09/2026 a 20/10/2026 (fecham",
+        "rotulo": "Mês 03 — 21/09/2026 a 20/10/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 7.7797
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "YESICA VEGA CORRETAGEM DE IMOVEIS LTDA",
-    "pasta": "YESICA VEGA / 3º TRIMESTRE",
+    "nome": "Yesica Vega Corretagem de Imóveis LTDA",
+    "pasta": "YESICA VEGA",
     "arquivo": "MÊS 02 DE 03 - RELATÓRIO DE HORAS S&S - YESICA VEGA CORRETAGEM DE IMOVEIS LTDA - 01.08.2026 a 31.08.2026.xlsx",
     "periodicidade": "Trimestral",
     "meses": 3,
@@ -1714,51 +1948,55 @@
     "excedidas": 0.0,
     "restantes": 15.75,
     "valor_hora": 550.0,
-    "progresso": "02 DE 03",
+    "valor_excedido": 0.0,
+    "progresso": "MÊS 02 DE 03",
     "serie": [
       {
         "rotulo": "Mês 01 - 01/07/2026 a 31/07/2026",
-        "util": 6.64
+        "util": 6.6408
       },
       {
         "rotulo": "Mês 02 - 01/08/2026 a 31/08/2026",
-        "util": 1.61
+        "util": 1.6089
       },
       {
-        "rotulo": "Mês 03 - 01/09/2026 a 30/09/2026 (fecham",
+        "rotulo": "Mês 03 - 01/09/2026 a 30/09/2026 (fechamento",
         "util": 0.0
+      },
+      {
+        "rotulo": "TOTAL",
+        "util": 8.2497
       }
     ],
-    "ok": true
+    "ok": true,
+    "recalculado": false
   },
   {
-    "nome": "ABELARDO BENIGNO & COSTA EMPREENDIMENTOS LTDA (ABC)",
-    "pasta": "ABC (arquivos soltos)",
+    "nome": "ABC (Abelardo Benigno & Costa Empreendimentos LTDA)",
+    "pasta": "ABC",
     "ok": false,
-    "motivo": "sem relatório no padrão novo (contrato por DEMANDAS, não por banco de horas)"
+    "motivo": "sem relatório de horas no padrão novo",
+    "valor_excedido": null
   },
   {
-    "nome": "DMG",
-    "pasta": "DMG",
-    "ok": false,
-    "motivo": "sem relatório no padrão novo"
-  },
-  {
-    "nome": "IMEX INVESTIMENTOS LTDA",
+    "nome": "Imex Investimentos LTDA",
     "pasta": "IMEX",
     "ok": false,
-    "motivo": "sem relatório no padrão novo (arquivo mais recente é RELATÓRIO DE DEMANDAS, modelo por demanda/valor, sem bloco de banco de horas)"
+    "motivo": "sem relatório de horas no padrão novo",
+    "valor_excedido": null
   },
   {
-    "nome": "IRINEU BEHLING",
+    "nome": "Irineu Behling",
     "pasta": "IRINEU BEHLING",
     "ok": false,
-    "motivo": "sem relatório no padrão novo (pasta só tem 'RELATÓRIO DE DEMANDAS', sem 'RELATÓRIO DE HORAS')"
+    "motivo": "sem relatório de horas no padrão novo",
+    "valor_excedido": null
   },
   {
-    "nome": "MS INCORPORADORA SA",
+    "nome": "MS Incorporadora SA",
     "pasta": "MS INCORPORADORA",
     "ok": false,
-    "motivo": "sem relatório no padrão novo (só há 'Relatório Timesheet' no formato antigo; 3º trimestre vazio)"
+    "motivo": "sem relatório de horas no padrão novo",
+    "valor_excedido": null
   }
 ]
