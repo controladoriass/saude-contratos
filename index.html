@@ -137,6 +137,12 @@ svg{display:block;max-width:100%}
 .listrow .lnome{flex:1;font-weight:600;cursor:pointer}
 .listrow .linfo{color:var(--muted);font-size:13px;white-space:nowrap;cursor:pointer}
 .listrow .chev{flex:none;cursor:pointer;color:var(--muted2)}
+/* muitos clientes (>10): compacta as linhas e rola dentro da própria lista */
+.lista.compacta{max-height:52vh;overflow-y:auto;padding-right:4px}
+.lista.compacta .listrow{padding:7px 4px;font-size:13px;gap:10px}
+.lista.compacta .listrow .linfo{font-size:12px}
+.lista.compacta .farol{font-size:12px}
+.lista.compacta .farol::before{width:8px;height:8px;box-shadow:0 0 0 3px color-mix(in srgb,currentColor 16%,transparent)}
 
 @media (max-width:640px){
   .stamp{text-align:left}
@@ -303,7 +309,7 @@ function abreLista(f){
       <label class="chkall"><input type="checkbox" id="chkAll"> Marcar todos</label>
       <button class="btnpdf" id="btnPdf">Salvar seleção em PDF</button>
     </div>
-    <div class="lista">${itens||'<div style="color:var(--muted);padding:16px 0">Nenhum cliente neste grupo.</div>'}</div>`;
+    <div class="lista${linhas.length>10?' compacta':''}">${itens||'<div style="color:var(--muted);padding:16px 0">Nenhum cliente neste grupo.</div>'}</div>`;
   // clicar no nome/info abre o detalhe; o checkbox não abre
   m.querySelectorAll('[data-open]').forEach(el=>el.onclick=()=>{
     const i=+el.dataset.open; abreModal(CLIENTES[i],ANS[i]);
@@ -319,30 +325,32 @@ function abreLista(f){
   document.getElementById('overlay').classList.add('on');
 }
 
-/* ===== PDF via impressão do navegador ===== */
+/* ===== PDF via impressão do navegador — cards compactos, 2 colunas (2-3 por folha) ===== */
 function gerarPDF(titulo, indices){
   const hoje=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  const corNivel={crit:'#c0392b',warn:'#c9962a',ok:'#2e7d32',na:'#888'};
   const cards=indices.map(i=>{
     const c=CLIENTES[i], a=ANS[i];
     const cic=cicloDatas(c);
-    const vig = cic?`vigência ${cic.ini} a ${cic.fim}`:`período ${c.sem_now} de ${c.sem_total}`;
-    const rows=[
-      ['Contrato', `${c.periodicidade}${c.meses?' ('+c.meses+' meses)':''}`],
-      ['Vigência', vig + (ordinalCiclo(c)?` · atualmente ${ordinalCiclo(c)}`:'')],
-      ['Horas contratadas', c.contratadas!=null?fmtH(c.contratadas):'—'],
-      ['Horas utilizadas', fmtH(c.utilizadas)],
-      ['Horas restantes', c.restantes!=null?fmtH(c.restantes):'—'],
-      ['% do banco usado', c.contratadas?a.usoPct.toFixed(1)+'%':'—'],
-      ['Horas excedidas', c.excedidas>0?fmtH(c.excedidas):'0h'],
-      ['Valor da hora excedente', c.valor_hora?fmtR(c.valor_hora):'—'],
-      ['Excedente a cobrar', (c.valor_excedido!=null&&c.valor_excedido>0)?fmtR(c.valor_excedido):'R$ 0,00'],
-      ['Projeção fim do período', fmtH(c.proj)+(c.contratadas?` (${a.projPct.toFixed(0)}%)`:'')],
-      ['Situação', a.farolTxt+' — '+a.rtitle],
-    ];
-    const tr=rows.map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('');
+    const vig = cic?`${cic.ini} a ${cic.fim}`:`período ${c.sem_now} de ${c.sem_total}`;
+    const cor=corNivel[a.nivel]||'#888';
+    // pílulas resumidas (chave: valor)
+    const pill=(k,v)=>`<span class="pill"><b>${k}</b> ${v}</span>`;
+    const pills=[
+      pill('Contrato', `${c.periodicidade}`),
+      pill('Vigência', vig),
+      pill('Contratadas', c.contratadas!=null?fmtH(c.contratadas):'—'),
+      pill('Utilizadas', fmtH(c.utilizadas)),
+      pill('% usado', c.contratadas?a.usoPct.toFixed(0)+'%':'—'),
+      pill('Restantes', c.restantes!=null?fmtH(c.restantes):'—'),
+      (c.excedidas>0?pill('Excedidas', fmtH(c.excedidas)):''),
+      ((c.valor_excedido!=null&&c.valor_excedido>0)?pill('A cobrar', fmtR(c.valor_excedido)):''),
+      pill('Projeção', fmtH(c.proj)+(c.contratadas?` (${a.projPct.toFixed(0)}%)`:'')),
+    ].filter(Boolean).join('');
     return `<section class="pcard">
-      <h2>${c.nome}</h2>
-      <table>${tr}</table>
+      <div class="pctitle"><span class="pname">${c.nome}</span>
+        <span class="pstatus" style="color:${cor}">● ${a.farolTxt}</span></div>
+      <div class="ppills">${pills}</div>
       <p class="prec">${a.rec.replace(/<\/?b>/g,'')}</p>
     </section>`;
   }).join('');
@@ -350,20 +358,23 @@ function gerarPDF(titulo, indices){
   win.document.write(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
     <title>Saúde dos Contratos — ${titulo}</title>
     <style>
-      *{box-sizing:border-box} body{font-family:Arial,Helvetica,sans-serif;color:#111;margin:0;padding:28px}
-      .phead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #1f3864;padding-bottom:10px;margin-bottom:18px}
-      .phead h1{font-size:18px;margin:0;color:#1f3864} .phead .sub{font-size:12px;color:#555}
-      .pcard{border:1px solid #ccc;border-radius:6px;padding:14px 16px;margin-bottom:14px;page-break-inside:avoid}
-      .pcard h2{font-size:14px;margin:0 0 8px;color:#1f3864}
-      table{width:100%;border-collapse:collapse;font-size:12px}
-      th,td{text-align:left;padding:4px 6px;border-bottom:1px solid #eee;vertical-align:top}
-      th{width:210px;color:#555;font-weight:600}
-      .prec{font-size:11.5px;color:#333;margin:10px 0 0;line-height:1.5;background:#f6f3ee;border-left:3px solid #cfa36e;padding:8px 10px}
-      @media print{ body{padding:0} .pcard{border-color:#bbb} }
+      *{box-sizing:border-box} body{font-family:Arial,Helvetica,sans-serif;color:#111;margin:0;padding:22px}
+      .phead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #1f3864;padding-bottom:8px;margin-bottom:14px}
+      .phead h1{font-size:16px;margin:0;color:#1f3864} .phead .sub{font-size:11px;color:#555;text-align:right}
+      .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+      .pcard{border:1px solid #ccc;border-radius:6px;padding:10px 12px;page-break-inside:avoid;break-inside:avoid}
+      .pctitle{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:7px}
+      .pname{font-size:12.5px;font-weight:700;color:#1f3864;line-height:1.2}
+      .pstatus{font-size:10.5px;font-weight:700;white-space:nowrap}
+      .ppills{display:flex;flex-wrap:wrap;gap:4px 6px;margin-bottom:7px}
+      .pill{font-size:10px;color:#333;background:#f2f2f4;border-radius:4px;padding:2px 6px;white-space:nowrap}
+      .pill b{color:#777;font-weight:600}
+      .prec{font-size:10px;color:#333;margin:0;line-height:1.4;border-left:2px solid #cfa36e;padding:5px 8px;background:#f6f3ee}
+      @media print{ body{padding:0} }
     </style></head><body>
     <div class="phead"><h1>Saúde dos Contratos · ${titulo}</h1>
-      <div class="sub">Silva &amp; Silva Advogados<br>${indices.length} cliente(s) · ${hoje}</div></div>
-    ${cards}
+      <div class="sub">Silva &amp; Silva Advogados · ${indices.length} cliente(s)<br>${hoje}</div></div>
+    <div class="grid">${cards}</div>
     <script>window.onload=()=>{setTimeout(()=>window.print(),300)}<\/script>
     </body></html>`);
   win.document.close();
