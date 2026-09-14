@@ -613,12 +613,11 @@ function sparkline(c){
     const lbl=(v>0)?`<text x="${p[0].toFixed(1)}" y="${(p[1]-9).toFixed(1)}" fill="${estouro?'var(--crit)':'var(--txt)'}" font-size="10.5" font-weight="${estouro?'800':'600'}" text-anchor="middle">${fmtH(v)}</text>`:'';
     return dot+lbl;
   }).join('');
-  // marcador vertical + etiqueta no ponto de estouro
+  // marcador vertical no ponto de estouro (só a linha tracejada; a bola vermelha é feita nos dots)
   let marcaEstouro='';
   if(idxEstouro>=0){
     const px=pts[idxEstouro][0];
-    marcaEstouro=`<line x1="${px.toFixed(1)}" y1="${pt}" x2="${px.toFixed(1)}" y2="${H-pb}" stroke="var(--crit)" stroke-dasharray="3 3" stroke-width="1" opacity=".55"/>
-      <text x="${px.toFixed(1)}" y="${pt+2}" fill="var(--crit)" font-size="10" font-weight="700" text-anchor="${idxEstouro>s.length/2?'end':'start'}" dy="0">▲ estourou o banco aqui</text>`;
+    marcaEstouro=`<line x1="${px.toFixed(1)}" y1="${pt}" x2="${px.toFixed(1)}" y2="${H-pb}" stroke="var(--crit)" stroke-dasharray="3 3" stroke-width="1" opacity=".55"/>`;
   }
   // rótulos do eixo X: número do período (1,2,3...) por baixo de cada ponto
   const xlabels=pts.map((p,i)=>{
