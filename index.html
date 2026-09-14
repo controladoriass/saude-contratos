@@ -36,14 +36,17 @@ h1{font-weight:800;font-size:clamp(26px,4.5vw,42px);letter-spacing:-.01em}
 .stamp{color:var(--muted2);font-size:12.5px;text-align:right;padding-top:4px}
 .stamp b{color:var(--txt);font-weight:600}
 
-/* ---------- KPIs ---------- */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2px 32px;margin-bottom:34px;
-  padding:22px 4px 4px;border-top:1px solid var(--line)}
-.kpi{padding:6px 0 10px}
+/* ---------- KPIs (cards em colunas) ---------- */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:34px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+  display:flex;flex-direction:column;gap:10px;min-height:104px}
 .kpi .lab{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
-.kpi .val{font-size:32px;font-weight:800;margin-top:6px;letter-spacing:-.02em}
+.kpi .val{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-top:auto}
 .kpi .val small{font-size:15px;font-weight:600;color:var(--muted)}
+.kpi.accent{background:linear-gradient(160deg,rgba(207,163,110,.14),var(--card));border-color:rgba(207,163,110,.32)}
 .kpi.accent .val{color:var(--gold)}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.kpis{grid-template-columns:1fr}}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px}
 .dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)} .dot.crit{background:var(--crit)} .dot.na{background:var(--muted2)}
 
@@ -111,8 +114,9 @@ tbody tr:last-child td{border-bottom:0}
 svg{display:block;max-width:100%}
 
 /* KPIs clicáveis */
-.kclick{cursor:pointer;border-radius:12px;padding:10px 14px;transition:background .15s}
-.kclick:hover{background:rgba(255,255,255,.04)}
+.kclick{cursor:pointer;transition:transform .12s,border-color .15s}
+.kclick:hover{transform:translateY(-2px);border-color:var(--line2)}
+.kpi.accent.kclick:hover{border-color:rgba(207,163,110,.5)}
 
 /* lista de clientes dentro do modal */
 .lista{display:flex;flex-direction:column;margin-top:14px}
