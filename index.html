@@ -55,11 +55,25 @@ h1{font-weight:800;font-size:clamp(26px,4.5vw,42px);letter-spacing:-.01em}
 .sec h2{font-size:15px;font-weight:700;letter-spacing:.02em}
 .sec .hint{color:var(--muted2);font-size:12.5px}
 
+/* ---------- filtros ---------- */
+.filtros{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin-bottom:16px}
+.fgrupo{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2)}
+.fchip{background:transparent;border:1px solid var(--line2);color:var(--muted);border-radius:999px;
+  padding:6px 14px;font-size:12.5px;cursor:pointer;font-family:inherit;transition:all .15s}
+.fchip:hover{border-color:var(--gold);color:var(--txt)}
+.fchip.on{background:var(--gold);border-color:var(--gold);color:#1a1305;font-weight:700}
+.fcount{font-size:12.5px;color:var(--muted2);margin-left:auto}
+
 /* ---------- table ---------- */
 .tablewrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:820px}
 thead th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);
   text-align:left;padding:14px 16px;border-bottom:1px solid var(--line2);font-weight:600;white-space:nowrap}
+thead th.sortable{cursor:pointer;user-select:none}
+thead th.sortable:hover{color:var(--txt)}
+thead th .arrow{opacity:.5;font-size:9px;margin-left:4px}
+thead th.sorted .arrow{opacity:1;color:var(--gold)}
 tbody td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
 tbody tr{cursor:pointer;transition:background .15s}
 tbody tr:hover{background:rgba(255,255,255,.03)}
@@ -165,17 +179,37 @@ svg{display:block;max-width:100%}
 
 <div class="sec">
   <h2>Carteira de clientes contratados</h2>
-  <span class="hint">clique em um cliente para ver a evolução e o detalhe da recomendação</span>
+  <span class="hint">clique num cabeçalho para ordenar · clique num cliente para ver o detalhe</span>
 </div>
+
+<div class="filtros" id="filtros">
+  <div class="fgrupo">
+    <span class="flab">Contrato</span>
+    <button class="fchip on" data-fp="todos">Todos</button>
+    <button class="fchip" data-fp="Mensal">Mensal</button>
+    <button class="fchip" data-fp="Trimestral">Trimestral</button>
+    <button class="fchip" data-fp="Semestral">Semestral</button>
+    <button class="fchip" data-fp="Anual">Anual</button>
+  </div>
+  <div class="fgrupo">
+    <span class="flab">Situação</span>
+    <button class="fchip on" data-fs="todos">Todas</button>
+    <button class="fchip" data-fs="ok">Saudável</button>
+    <button class="fchip" data-fs="warn">Atenção</button>
+    <button class="fchip" data-fs="crit">Sugestão</button>
+  </div>
+  <span class="fcount" id="fcount"></span>
+</div>
+
 <div class="tablewrap">
   <table>
     <thead>
       <tr>
-        <th>Cliente</th>
-        <th>Contrato</th>
-        <th>Consumo do banco</th>
-        <th>Projeção fim do período</th>
-        <th>Situação</th>
+        <th class="sortable" data-sort="nome">Cliente</th>
+        <th class="sortable" data-sort="periodicidade">Contrato</th>
+        <th class="sortable" data-sort="uso">Consumo do banco</th>
+        <th class="sortable" data-sort="proj">Projeção fim do período</th>
+        <th class="sortable" data-sort="situacao">Situação</th>
         <th>Recomendação</th>
         <th></th>
       </tr>
@@ -380,9 +414,39 @@ function gerarPDF(titulo, indices){
   win.document.close();
 }
 
+// estado de filtro e ordenação
+let FILTRO={periodicidade:'todos', situacao:'todos'};
+let SORT={col:'situacao', dir:1};   // dir: 1 = padrão (situação: crítico->ok); ao clicar inverte
+const ordemPeri={Mensal:0,Trimestral:1,Semestral:2,Anual:3};
+
+function valorSort(c,a,col){
+  switch(col){
+    case 'nome': return c.nome.toLowerCase();
+    case 'periodicidade': return ordemPeri[c.periodicidade] ?? 9;
+    case 'uso': return a.usoPct||0;
+    case 'proj': return a.projPct||0;
+    case 'situacao': return ordem[a.nivel];   // crit<warn<ok<na
+    default: return 0;
+  }
+}
+
 function renderTabela(clientes, ans){
   const tb=document.getElementById('tbody'); tb.innerHTML='';
-  const idx=[...clientes.keys()].sort((a,b)=>ordem[ans[a].nivel]-ordem[ans[b].nivel] || ans[b].usoPct-ans[a].usoPct);
+  // filtra
+  let idx=[...clientes.keys()].filter(i=>{
+    const c=clientes[i], a=ans[i];
+    if(FILTRO.periodicidade!=='todos' && c.periodicidade!==FILTRO.periodicidade) return false;
+    if(FILTRO.situacao!=='todos' && a.nivel!==FILTRO.situacao) return false;
+    return true;
+  });
+  // ordena
+  idx.sort((x,y)=>{
+    const vx=valorSort(clientes[x],ans[x],SORT.col), vy=valorSort(clientes[y],ans[y],SORT.col);
+    let cmp = (vx<vy?-1:vx>vy?1:0);
+    // desempate por % usado desc quando ordenando por situação
+    if(cmp===0 && SORT.col==='situacao') cmp = (ans[y].usoPct||0)-(ans[x].usoPct||0);
+    return cmp*SORT.dir;
+  });
   idx.forEach(i=>{
     const c=clientes[i], a=ans[i];
     const semBanco = a.nivel==='na';
@@ -403,6 +467,36 @@ function renderTabela(clientes, ans){
       <td class="rec">${a.rec.replace(/<b>|<\/b>/g,'')}</td>
       <td class="chev">›</td>`;
     tb.appendChild(tr);
+  });
+  // contador e setas de ordenação
+  const fc=document.getElementById('fcount');
+  if(fc) fc.textContent = `${idx.length} de ${clientes.length} clientes`;
+  document.querySelectorAll('thead th.sortable').forEach(th=>{
+    const on = th.dataset.sort===SORT.col;
+    th.classList.toggle('sorted',on);
+    let ar=th.querySelector('.arrow'); if(!ar){ar=document.createElement('span');ar.className='arrow';th.appendChild(ar);}
+    ar.textContent = on ? (SORT.dir>0?' ▲':' ▼') : ' ⇅';
+  });
+}
+
+function ligarControles(){
+  // filtros de periodicidade
+  document.querySelectorAll('[data-fp]').forEach(b=>b.onclick=()=>{
+    FILTRO.periodicidade=b.dataset.fp;
+    document.querySelectorAll('[data-fp]').forEach(x=>x.classList.toggle('on',x===b));
+    renderTabela(CLIENTES,ANS);
+  });
+  // filtros de situação
+  document.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>{
+    FILTRO.situacao=b.dataset.fs;
+    document.querySelectorAll('[data-fs]').forEach(x=>x.classList.toggle('on',x===b));
+    renderTabela(CLIENTES,ANS);
+  });
+  // ordenação por cabeçalho
+  document.querySelectorAll('thead th.sortable').forEach(th=>th.onclick=()=>{
+    const col=th.dataset.sort;
+    if(SORT.col===col) SORT.dir*=-1; else { SORT.col=col; SORT.dir = (col==='nome'||col==='periodicidade')?1:-1; }
+    renderTabela(CLIENTES,ANS);
   });
 }
 
@@ -536,6 +630,7 @@ function pinta(clientes){
   CLIENTES=clientes; ANS=ans;
   renderKpis(clientes,ans);
   renderTabela(clientes,ans);
+  ligarControles();
 }
 
 /* Dados embutidos (window.DADOS) são a fonte principal — funciona local, por arquivo e no GitHub Pages.
