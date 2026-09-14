@@ -30,9 +30,9 @@ h1,h2,h3{text-wrap:balance;margin:0}
 /* ---------- header ---------- */
 header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;
   border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:26px}
-.brand{letter-spacing:.32em;font-weight:700;font-size:12px;color:var(--gold);text-transform:uppercase}
-h1{font-weight:800;font-size:clamp(26px,4.5vw,42px);letter-spacing:-.01em;margin-top:6px}
-.sub{color:var(--muted);font-size:14px;margin-top:8px;max-width:60ch}
+.titlewrap{display:flex;flex-direction:column;gap:14px}
+.logo{height:clamp(38px,5vw,54px);width:auto;object-fit:contain}
+h1{font-weight:800;font-size:clamp(26px,4.5vw,42px);letter-spacing:-.01em}
 .stamp{color:var(--muted2);font-size:12.5px;text-align:right}
 .stamp b{color:var(--txt);font-weight:600}
 
@@ -117,14 +117,12 @@ svg{display:block;max-width:100%}
 </head>
 <body>
 <header>
-  <div>
-    <div class="brand">Silva &amp; Silva Advogados</div>
+  <div class="titlewrap">
+    <img class="logo" src="logo.png" alt="Silva &amp; Silva Advogados">
     <h1>Saúde dos Contratos</h1>
-    <p class="sub">Acompanhamento do banco de horas de cada cliente contratado. Um farol por cliente indica se o consumo caminha para dentro ou para fora do contratado, com a recomendação de aditivo explicada em números.</p>
   </div>
   <div class="stamp">
-    Atualizado em <b id="hoje">—</b><br>
-    Envio semanal · consolidação segunda-feira
+    Atualizado em <b id="hoje"></b>
   </div>
 </header>
 
@@ -177,26 +175,29 @@ function analisa(c){
   const usoPct  = pct(c.utilizadas, c.contratadas);
   const projPct = pct(c.proj, c.contratadas);
   const excedeuAgora = c.utilizadas > c.contratadas || (c.excedidas||0) > 0;
+  // unidade da série: contratos medidos por mês x por semana
+  const un = (c.periodicidade==='Trimestral' && (c.serie||[]).length<=4) || c.periodicidade==='Anual'
+             ? 'por mês' : 'por semana';
   let nivel, farolTxt, rec, rtitle;
 
   if (excedeuAgora || projPct >= 100){
-    nivel='crit'; farolTxt='Aditivo';
+    nivel='crit'; farolTxt='Possível aditivo';
     const horasEstouro = Math.max(c.proj - c.contratadas, c.utilizadas - c.contratadas);
-    const rs = horasEstouro>0 ? fmtR(horasEstouro*c.valor_hora) : '—';
-    rtitle='Aditivo recomendado';
+    const rs = horasEstouro>0 ? fmtR(horasEstouro*c.valor_hora) : null;
+    rtitle='Sinaliza possível aditivo';
     if (excedeuAgora){
-      rec = `Já ultrapassou o banco de ${fmtH(c.contratadas)}. No ritmo de <b>${fmtH(c.ritmo)}/semana</b>, projeta fechar em <b>${fmtH(c.proj)}</b>. Estouro previsto de <b>${fmtH(horasEstouro)}</b> ≈ <b>${rs}</b> em excedente. Antecipar aditivo trava a relação e evita a cobrança avulsa.`;
+      rec = `O consumo já passou do banco de ${fmtH(c.contratadas)} (<b>${fmtH(c.utilizadas)}</b> lançadas). Seguindo nesse fluxo, há <b>${fmtH(horasEstouro)}</b> de horas excedentes previstas${rs?` (aproximadamente <b>${rs}</b>)`:''}, o que sinaliza um possível aditivo de horas para o próximo ciclo.`;
     } else {
-      rec = `No ritmo de <b>${fmtH(c.ritmo)}/semana</b>, projeta fechar o período em <b>${fmtH(c.proj)}</b> — acima do banco de ${fmtH(c.contratadas)}. Estouro previsto de <b>${fmtH(horasEstouro)}</b> ≈ <b>${rs}</b>. Recomendado propor aditivo antes do estouro.`;
+      rec = `No ritmo de <b>${fmtH(c.ritmo)} ${un}</b>, a projeção é fechar o período em <b>${fmtH(c.proj)}</b>, acima do banco de ${fmtH(c.contratadas)}. Se seguir assim, há <b>${fmtH(horasEstouro)}</b> de horas excedentes previstas${rs?` (aproximadamente <b>${rs}</b>)`:''}: cenário que sinaliza um possível aditivo.`;
     }
   } else if (projPct >= 80){
-    nivel='warn'; farolTxt='Monitorar';
-    rtitle='Zona de atenção';
-    rec = `No ritmo de <b>${fmtH(c.ritmo)}/semana</b>, projeta fechar em <b>${fmtH(c.proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco). Ainda dentro, mas perto do limite — acompanhar e avisar o cliente se a curva acelerar.`;
+    nivel='warn'; farolTxt='Atenção';
+    rtitle='Caminho de atenção';
+    rec = `No ritmo de <b>${fmtH(c.ritmo)} ${un}</b>, a projeção é fechar em <b>${fmtH(c.proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco). Ainda dentro do contratado, mas seguindo nesse caminho fica próximo do limite; convém acompanhar a curva nas próximas semanas.`;
   } else {
     nivel='ok'; farolTxt='Saudável';
-    rtitle='Sem ação necessária';
-    rec = `No ritmo de <b>${fmtH(c.ritmo)}/semana</b>, projeta fechar em <b>${fmtH(c.proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco de ${fmtH(c.contratadas)}). Consumo confortável dentro do contratado.`;
+    rtitle='Dentro do contratado';
+    rec = `No ritmo de <b>${fmtH(c.ritmo)} ${un}</b>, a projeção é fechar em <b>${fmtH(c.proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco de ${fmtH(c.contratadas)}). Seguindo nesse fluxo, o consumo permanece confortável dentro do contratado.`;
   }
   return {usoPct, projPct, nivel, farolTxt, rec, rtitle};
 }
@@ -216,7 +217,7 @@ function renderKpis(clientes, an){
     <div class="kpi"><div class="lab">Saudáveis</div><div class="val tnum"><span class="dot ok"></span>${cont.ok}</div></div>
     <div class="kpi"><div class="lab">Em atenção</div><div class="val tnum"><span class="dot warn"></span>${cont.warn}</div></div>
     <div class="kpi"><div class="lab">Aditivo sugerido</div><div class="val tnum"><span class="dot crit"></span>${cont.crit}</div></div>
-    <div class="kpi accent"><div class="lab">Excedente a cobrar</div><div class="val tnum">${excedente>0?fmtR(excedente):'—'}</div></div>`;
+    <div class="kpi accent"><div class="lab">Excedente a cobrar</div><div class="val tnum">${excedente>0?fmtR(excedente):'R$ 0,00'}</div></div>`;
 }
 
 const ordem={crit:0,warn:1,ok:2};
@@ -248,13 +249,13 @@ function abreModal(c,a){
   m.innerHTML=`
     <button class="x" onclick="fecha()" aria-label="Fechar">×</button>
     <h3>${c.nome}</h3>
-    <div class="msub">${c.grupo||''} · Contrato ${c.periodicidade.toLowerCase()} (${c.meses||'?'} meses) · Semana ${c.sem_now} de ${c.sem_total} · Hora excedente ${fmtR(c.valor_hora)}</div>
+    <div class="msub">${c.grupo? c.grupo+' · ':''}Contrato ${c.periodicidade.toLowerCase()}${c.meses?' ('+c.meses+' meses)':''} · Período ${c.sem_now} de ${c.sem_total} · Hora excedente ${fmtR(c.valor_hora)}</div>
     <div class="mgrid">
       <div class="mstat"><div class="l">Contratadas</div><div class="v tnum">${fmtH(c.contratadas)}</div></div>
       <div class="mstat"><div class="l">Utilizadas</div><div class="v tnum">${fmtH(c.utilizadas)}</div></div>
       <div class="mstat"><div class="l">Restantes</div><div class="v tnum">${fmtH(c.restantes)}</div></div>
       <div class="mstat"><div class="l">% usado</div><div class="v tnum">${a.usoPct.toFixed(1)}%</div></div>
-      <div class="mstat"><div class="l">Ritmo</div><div class="v tnum">${fmtH(c.ritmo)}<small style="font-size:12px;color:var(--muted)">/sem</small></div></div>
+      <div class="mstat"><div class="l">Ritmo médio</div><div class="v tnum">${fmtH(c.ritmo)}</div></div>
       <div class="mstat"><div class="l">Projeção fim</div><div class="v tnum">${fmtH(c.proj)}</div></div>
     </div>
     <div class="recbox">
@@ -262,7 +263,7 @@ function abreModal(c,a){
       <div>${a.rec}</div>
     </div>
     <div class="chartwrap">
-      <div class="ctitle">Evolução do consumo · horas acumuladas por semana</div>
+      <div class="ctitle">Evolução do consumo · horas acumuladas</div>
       ${sparkline(c)}
     </div>`;
   document.getElementById('overlay').classList.add('on');
