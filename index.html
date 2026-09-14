@@ -550,52 +550,99 @@ function vigenciaTxt(c){
   return `${c.sem_now||'?'} de ${c.sem_total||'?'}`;
 }
 
-function abreModal(c,a){
-  const m=document.getElementById('modal');
-  const cic=cicloDatas(c);
-  const ult=ultimoLancado(c);
-  const restoCiclo = (cic && ult) ? ` · última atualização em ${ult}` : '';
-  m.innerHTML=`
-    <button class="x" onclick="fecha()" aria-label="Fechar">×</button>
-    <h3>${c.nome}</h3>
-    <div class="msub">Contrato ${c.periodicidade.toLowerCase()} · ${vigenciaTxt(c)}${c.valor_hora?' · hora excedente '+fmtR(c.valor_hora):''}${restoCiclo}</div>
-    <div class="mgrid">
-      <div class="mstat"><div class="l">Contratadas</div><div class="v tnum">${fmtH(c.contratadas)}</div></div>
-      <div class="mstat"><div class="l">Utilizadas</div><div class="v tnum">${fmtH(c.utilizadas)}</div></div>
-      <div class="mstat"><div class="l">Restantes</div><div class="v tnum">${fmtH(c.restantes)}</div></div>
-      <div class="mstat"><div class="l">% usado</div><div class="v tnum">${a.usoPct.toFixed(1)}%</div></div>
-      <div class="mstat"><div class="l">Ritmo médio</div><div class="v tnum">${fmtH(c.ritmo)}</div></div>
-      <div class="mstat"><div class="l">Projeção fim</div><div class="v tnum">${fmtH(c.proj)}</div></div>
-      ${(c.excedidas>0)?`<div class="mstat"><div class="l">Horas excedidas</div><div class="v tnum">${fmtH(c.excedidas)}</div></div>`:''}
-      ${(c.valor_excedido!=null && c.valor_excedido>0)?`<div class="mstat"><div class="l">Excedente a cobrar</div><div class="v tnum" style="color:var(--crit)">${fmtR(c.valor_excedido)}</div></div>`:''}
-    </div>
+// analisa um CICLO específico (usa contratadas/valor_hora do próprio ciclo)
+function analisaCiclo(c, cy){
+  const contr=cy.contratadas, util=cy.utilizadas||0;
+  const exc=cy.excedidas!=null?cy.excedidas:(contr!=null?Math.max(0,util-contr):0);
+  const usoPct = contr? util/contr*100 : 0;
+  const un = (c.periodicidade==='Mensal') ? 'semana' : 'mês';
+  // ritmo e projeção dentro do ciclo
+  const pts=(cy.serie||[]).filter(s=>s.util!=null);
+  const lancados=pts.filter(s=>s.util>0).length || pts.length || 1;
+  const ritmo = util/lancados;
+  let proj = ritmo*(cy.serie?cy.serie.length:lancados);
+  if(exc>0 || (contr && util>contr)) proj=Math.max(proj,util);
+  const projPct = contr? proj/contr*100 : 0;
+  let nivel,farolTxt,rtitle,rec;
+  const valReal=(cy.valor_excedido!=null&&cy.valor_excedido>0)?cy.valor_excedido:(cy.valor_hora&&contr?Math.max(0,util-contr)*cy.valor_hora:null);
+  if(contr==null){ nivel='na';farolTxt='Sem banco';rtitle='Banco não informado';
+    rec=`Este ciclo não traz o total de horas contratadas. Foram lançadas <b>${fmtH(util)}</b>.`; }
+  else if(util>contr || exc>0 || projPct>=100){
+    nivel='crit';farolTxt='Possível aditivo';rtitle='Sinaliza possível aditivo';
+    const rs=valReal!=null?fmtR(valReal):null;
+    rec=`O consumo já passou do banco de ${fmtH(contr)} (<b>${fmtH(util)}</b> lançadas). Já há <b>${fmtH(Math.max(0,util-contr))}</b> de horas excedentes${rs?`, no valor de <b>${rs}</b> (conforme a planilha)`:''}, o que sinaliza um possível aditivo de horas para o próximo ciclo.`;
+  } else if(projPct>=80){
+    nivel='warn';farolTxt='Atenção';rtitle='Caminho de atenção';
+    rec=`No ritmo de <b>${fmtH(ritmo)} por ${un}</b>, a projeção é fechar em <b>${fmtH(proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco). Ainda dentro do contratado, mas seguindo nesse caminho fica próximo do limite.`;
+  } else {
+    nivel='ok';farolTxt='Saudável';rtitle='Dentro do contratado';
+    rec=`No ritmo de <b>${fmtH(ritmo)} por ${un}</b>, a projeção é fechar em <b>${fmtH(proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco de ${fmtH(contr)}). Consumo confortável dentro do contratado.`;
+  }
+  return {contr,util,exc,usoPct,proj,projPct,ritmo,nivel,farolTxt,rtitle,rec,valReal,
+          restantes: contr!=null?contr-util:null};
+}
+
+// monta o corpo do detalhe (msub + cards + recomendação + gráfico) para UM ciclo
+function corpoCiclo(c, cy){
+  const a=analisaCiclo(c,cy);
+  const un=(c.periodicidade==='Mensal')?'S':'M';
+  const ordinalTxt = cy.serie&&cy.serie.length ? ` · ${cy.serie.length} ${un==='M'?'meses':'semanas'} no ciclo` : '';
+  const vig = (cy.ini&&cy.fim)? `vigência ${cy.ini} a ${cy.fim}` : vigenciaTxt(c);
+  const msub = `Contrato ${c.periodicidade.toLowerCase()} · ${vig}${cy.valor_hora?' · hora excedente '+fmtR(cy.valor_hora):''}${ordinalTxt}`;
+  const cards = `
+      <div class="mstat"><div class="l">Contratadas</div><div class="v tnum">${fmtH(a.contr)}</div></div>
+      <div class="mstat"><div class="l">Utilizadas</div><div class="v tnum">${fmtH(a.util)}</div></div>
+      <div class="mstat"><div class="l">Restantes</div><div class="v tnum">${fmtH(a.restantes)}</div></div>
+      <div class="mstat"><div class="l">% usado</div><div class="v tnum">${a.contr?a.usoPct.toFixed(1)+'%':'—'}</div></div>
+      <div class="mstat"><div class="l">Ritmo médio</div><div class="v tnum">${fmtH(a.ritmo)}</div></div>
+      <div class="mstat"><div class="l">Projeção fim</div><div class="v tnum">${fmtH(a.proj)}</div></div>
+      ${(a.exc>0)?`<div class="mstat"><div class="l">Horas excedidas</div><div class="v tnum">${fmtH(a.exc)}</div></div>`:''}
+      ${(a.valReal!=null&&a.valReal>0)?`<div class="mstat"><div class="l">Excedente a cobrar</div><div class="v tnum" style="color:var(--crit)">${fmtR(a.valReal)}</div></div>`:''}`;
+  return `
+    <div class="msub">${msub}</div>
+    <div class="mgrid">${cards}</div>
     <div class="recbox">
       <div class="rtitle"><span class="farol ${a.nivel}">${a.farolTxt}</span> ${a.rtitle}</div>
       <div>${a.rec}</div>
     </div>
     <div class="chartwrap">
       <div class="ctitle">Evolução do consumo</div>
-      ${abasCiclos(c)}
-      <div id="chartArea">${sparkline(c)}</div>
+      __ABAS__
+      <div id="chartArea">${sparkline(c, cy.serie||[], cy.contratadas, un)}</div>
     </div>`;
-  document.getElementById('overlay').classList.add('on');
-  ligarAbasCiclos(c);
 }
 
-// abas de ciclos (quando o cliente tem histórico por ciclo)
-function abasCiclos(c){
-  const cs=c.ciclos||[];
-  if(cs.length<=1) return '';
-  const btns=cs.map((cy,i)=>`<button class="cabas-b${cy.atual?' atual':''}" data-ci="${i}">${cy.rotulo}</button>`).join('');
-  return `<div class="cabas">${btns}</div>`;
+function abreModal(c,a){
+  const m=document.getElementById('modal');
+  // usa os ciclos se houver; senão monta um "ciclo" a partir do próprio c (ciclo atual)
+  const cs=(c.ciclos&&c.ciclos.length)?c.ciclos:[{
+    rotulo:'Ciclo atual', ini:(cicloDatas(c)||{}).ini, fim:(cicloDatas(c)||{}).fim,
+    contratadas:c.contratadas, utilizadas:c.utilizadas, excedidas:c.excedidas,
+    valor_hora:c.valor_hora, valor_excedido:c.valor_excedido, atual:true, serie:(c.serie||[])
+  }];
+  const atualIdx=Math.max(0, cs.findIndex(x=>x.atual));
+  const abas = cs.length>1 ? `<div class="cabas">${cs.map((cy,i)=>`<button data-ci="${i}">${cy.rotulo}</button>`).join('')}</div>` : '';
+  const render=(i)=>{
+    m.querySelector('#detalheCorpo').innerHTML = corpoCiclo(c,cs[i]).replace('__ABAS__', abas);
+    const wrap=m.querySelector('.cabas');
+    if(wrap){ wrap.querySelectorAll('button').forEach((b,bi)=>{b.classList.toggle('sel',bi===i); b.onclick=()=>render(bi);}); }
+  };
+  m.innerHTML=`
+    <button class="x" onclick="fecha()" aria-label="Fechar">×</button>
+    <h3>${c.nome}</h3>
+    <div id="detalheCorpo"></div>`;
+  render(atualIdx);
+  document.getElementById('overlay').classList.add('on');
 }
+
+// (compat) mantidas para não quebrar chamadas antigas
+function abasCiclos(c){ return ''; }
 function ligarAbasCiclos(c){
   const cs=c.ciclos||[]; if(cs.length<=1) return;
   const wrap=document.querySelector('.cabas'); if(!wrap) return;
   const atualIdx = Math.max(0, cs.findIndex(x=>x.atual));
   const render=(i)=>{
     const cy=cs[i];
-    const bancoMes = null; // usa o banco do ciclo
     const un = (c.periodicidade==='Mensal') ? 'S' : 'M';
     document.getElementById('chartArea').innerHTML = sparkline(c, cy.serie||[], cy.contratadas, un);
     wrap.querySelectorAll('button').forEach((b,bi)=>b.classList.toggle('sel',bi===i));
