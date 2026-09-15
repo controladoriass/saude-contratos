@@ -160,6 +160,12 @@ svg{display:block;max-width:100%}
 .listrow .lnome{flex:1;font-weight:600;cursor:pointer}
 .listrow .linfo{color:var(--muted);font-size:13px;white-space:nowrap;cursor:pointer}
 .listrow .chev{flex:none;cursor:pointer;color:var(--muted2)}
+/* faixas de prazo do excedente */
+.faixa{margin-bottom:16px}
+.faixa-h{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);
+  border-bottom:1px solid var(--line2);padding-bottom:6px;margin-bottom:2px}
+.faixa-v{color:var(--gold);font-weight:700;font-size:13px;letter-spacing:0}
 /* muitos clientes (>10): compacta as linhas e rola dentro da própria lista */
 .lista.compacta{max-height:52vh;overflow-y:auto;padding-right:4px}
 .lista.compacta .listrow{padding:7px 4px;font-size:13px;gap:10px}
@@ -186,10 +192,6 @@ svg{display:block;max-width:100%}
 
 <section class="kpis" id="kpis"></section>
 
-<div class="sec">
-  <h2>Carteira de clientes contratados</h2>
-  <span class="hint">clique num cabeçalho para ordenar · clique num cliente para ver o detalhe</span>
-</div>
 
 <div class="filtros" id="filtros">
   <div class="fgrupo">
@@ -305,18 +307,16 @@ let CLIENTES=[], ANS=[];
 function renderKpis(clientes, an){
   const cont={ok:0,warn:0,crit:0,na:0};
   let excedente=0;
-  an.forEach((a,i)=>{cont[a.nivel]=(cont[a.nivel]||0)+1; const c=clientes[i];
-    // valor de auditoria: R$ que a planilha calcula; fallback p/ estimativa
-    if(c.valor_excedido!=null && c.valor_excedido>0) excedente += c.valor_excedido;
-    else if(c.contratadas && c.valor_hora && c.utilizadas>c.contratadas)
-      excedente += (c.utilizadas-c.contratadas)*c.valor_hora;});
+  an.forEach((a,i)=>{cont[a.nivel]=(cont[a.nivel]||0)+1;
+    // só o excedente do ciclo EM ANDAMENTO (não fechado)
+    excedente += excedenteAtual(clientes[i]);});
   const k = document.getElementById('kpis');
   k.innerHTML = `
     <div class="kpi accent kclick" data-f="todos"><div class="lab">Clientes contratados</div><div class="val tnum">${clientes.length}</div></div>
     <div class="kpi kclick" data-f="ok"><div class="lab">Saudáveis</div><div class="val tnum"><span class="dot ok"></span>${cont.ok}</div></div>
     <div class="kpi kclick" data-f="warn"><div class="lab">Em atenção</div><div class="val tnum"><span class="dot warn"></span>${cont.warn}</div></div>
     <div class="kpi kclick" data-f="crit"><div class="lab">Sugestões</div><div class="val tnum"><span class="dot crit"></span>${cont.crit}</div></div>
-    <div class="kpi accent kclick" data-f="exc"><div class="lab">Excedente a cobrar</div><div class="val tnum">${excedente>0?fmtR(excedente):'R$ 0,00'}</div></div>`;
+    <div class="kpi accent kclick" data-f="exc"><div class="lab">Excedente previsto no ciclo</div><div class="val tnum">${excedente>0?fmtR(excedente):'R$ 0,00'}</div></div>`;
   k.querySelectorAll('.kclick').forEach(el=>el.onclick=()=>abreLista(el.dataset.f));
 }
 
@@ -325,13 +325,79 @@ const ordem={crit:0,warn:1,ok:2,na:3};
 const TITULOS={todos:'Todos os clientes contratados',ok:'Clientes saudáveis',
   warn:'Clientes em atenção',crit:'Clientes com sugestão de aditivo',exc:'Clientes com excedente previsto'};
 
+// data de fechamento do ciclo atual (dd/mm/aaaa) -> Date
+function dataFechamento(c){
+  const cs=c.ciclos||[];
+  const at=cs.find(x=>x.atual)||cs[cs.length-1];
+  const fim=at&&at.fim; if(!fim) return null;
+  const m=String(fim).match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  return m? new Date(+m[3],+m[2]-1,+m[1]) : null;
+}
+function diasAte(dt){ if(!dt) return null; return Math.round((dt-new Date(new Date().toDateString()))/86400000); }
+const DIAS_BOLETO=10; // prazo médio entre o fechamento e o recebimento do boleto
+// previsão de RECEBIMENTO = fim do ciclo + prazo do boleto
+function dataRecebimento(c){
+  const dt=dataFechamento(c); if(!dt) return null;
+  const r=new Date(dt); r.setDate(r.getDate()+DIAS_BOLETO); return r;
+}
+// excedente do ÚLTIMO ciclo (o atual): aberto OU recém-fechado ainda a receber
+function excedenteAtual(c){
+  const cs=c.ciclos||[]; const at=cs.find(x=>x.atual)||cs[cs.length-1];
+  return at? (at.valor_excedido||0) : 0;
+}
+
+// vista do card excedente: faixas por PREVISÃO DE RECEBIMENTO (fechamento + prazo do boleto)
+function abreExcedentes(){
+  const itens=[];
+  CLIENTES.forEach((c,i)=>{
+    const v=excedenteAtual(c);
+    if(v>0){ const dtRec=dataRecebimento(c); const dtFim=dataFechamento(c);
+      itens.push({c,i,v,dtRec,dtFim,dias:diasAte(dtRec)}); }
+  });
+  const faixas=[
+    {t:'Disponível para cobrar agora', test:x=> x.dias!=null && x.dias<=0},
+    {t:'A receber em até 15 dias', test:x=> x.dias!=null && x.dias>0 && x.dias<=15},
+    {t:'A receber em 16 a 30 dias', test:x=> x.dias!=null && x.dias>15 && x.dias<=30},
+    {t:'A receber em 31 a 60 dias', test:x=> x.dias!=null && x.dias>30 && x.dias<=60},
+    {t:'A receber em mais de 60 dias', test:x=> x.dias!=null && x.dias>60},
+    {t:'Sem data de fechamento', test:x=> x.dias==null},
+  ];
+  const total=itens.reduce((s,x)=>s+x.v,0);
+  let html='';
+  faixas.forEach(fx=>{
+    const grupo = itens.filter(fx.test).sort((a,b)=>(a.dias??9e9)-(b.dias??9e9));
+    if(!grupo.length) return;
+    const soma=grupo.reduce((s,x)=>s+x.v,0);
+    html+=`<div class="faixa"><div class="faixa-h"><span>${fx.t}</span><span class="faixa-v tnum">${fmtR(soma)}</span></div>`;
+    grupo.forEach(x=>{
+      const dtxt = x.dtRec
+        ? `receb. prev. ${x.dtRec.toLocaleDateString('pt-BR')}${x.dias>0?` · em ${x.dias} dias`:(x.dias===0?' · hoje':' · disponível')}`
+        : 'sem data de fechamento';
+      html+=`<div class="listrow" data-open="${x.i}">
+        <span class="lnome" data-open="${x.i}">${x.c.nome}</span>
+        <span class="linfo" data-open="${x.i}" style="color:var(--muted2)">${dtxt}</span>
+        <span class="tnum" style="color:var(--crit);font-weight:700">${fmtR(x.v)}</span>
+        <span class="chev" data-open="${x.i}">›</span></div>`;
+    });
+    html+='</div>';
+  });
+  const m=document.getElementById('modal');
+  m.innerHTML=`
+    <button class="x" onclick="fecha()" aria-label="Fechar">×</button>
+    <h3>Excedente previsto no ciclo</h3>
+    <div class="msub">Total ${fmtR(total)} em ${itens.length} cliente(s) · previsão de recebimento ~${DIAS_BOLETO} dias após o fechamento de cada ciclo</div>
+    <div class="lista${itens.length>8?' compacta':''}">${html||'<div style="color:var(--muted);padding:16px 0">Nenhum cliente com excedente no ciclo atual.</div>'}</div>`;
+  m.querySelectorAll('[data-open]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.open; abreModal(CLIENTES[i],ANS[i]); });
+  document.getElementById('overlay').classList.add('on');
+}
+
 function abreLista(f){
+  if(f==='exc'){ return abreExcedentes(); }
   const linhas=[];
   CLIENTES.forEach((c,i)=>{
     const a=ANS[i];
     let inc=false;
     if(f==='todos') inc=true;
-    else if(f==='exc') inc=(c.contratadas && c.utilizadas>c.contratadas);
     else inc=(a.nivel===f);
     if(inc) linhas.push({c,a});
   });
@@ -582,6 +648,17 @@ function analisaCiclo(c, cy){
           restantes: contr!=null?contr-util:null};
 }
 
+// texto de cobrança sob o excedente: "a cobrar em DD/MM (faltam N dias)"
+function cobrancaTxt(cy){
+  const fim=cy&&cy.fim; if(!fim) return '';
+  const m=String(fim).match(/(\d{2})\/(\d{2})\/(\d{4})/); if(!m) return '';
+  const dtFim=new Date(+m[3],+m[2]-1,+m[1]);
+  const dtRec=new Date(dtFim); dtRec.setDate(dtRec.getDate()+DIAS_BOLETO);
+  const diasRec=Math.round((dtRec-new Date(new Date().toDateString()))/86400000);
+  const quando = diasRec>0?`em ${diasRec} dias`:(diasRec===0?'hoje':'disponível para cobrar');
+  return `<div style="font-size:11px;color:var(--muted2);margin-top:4px">ciclo fecha em ${dtFim.toLocaleDateString('pt-BR')} · receb. previsto ${dtRec.toLocaleDateString('pt-BR')} (${quando})</div>`;
+}
+
 // monta o corpo do detalhe (msub + cards + recomendação + gráfico) para UM ciclo
 function corpoCiclo(c, cy){
   const a=analisaCiclo(c,cy);
@@ -599,7 +676,7 @@ function corpoCiclo(c, cy){
       <div class="mstat"><div class="l">Ritmo médio</div><div class="v tnum">${fmtH(a.ritmo)}</div></div>
       <div class="mstat"><div class="l">Projeção fim</div><div class="v tnum">${fmtH(a.proj)}</div></div>
       ${(a.exc>0)?`<div class="mstat"><div class="l">Horas excedidas</div><div class="v tnum">${fmtH(a.exc)}</div></div>`:''}
-      ${(a.valReal!=null&&a.valReal>0)?`<div class="mstat"><div class="l">Excedente a cobrar</div><div class="v tnum" style="color:var(--crit)">${fmtR(a.valReal)}</div></div>`:''}`;
+      ${(a.valReal!=null&&a.valReal>0)?`<div class="mstat"><div class="l">Excedente a cobrar</div><div class="v tnum" style="color:var(--crit)">${fmtR(a.valReal)}</div>${cobrancaTxt(cy)}</div>`:''}`;
   return `
     <div class="msub">${msub}</div>
     <div class="mgrid">${cards}</div>
