@@ -227,7 +227,7 @@ svg{display:block;max-width:100%}
         <th class="sortable" data-sort="nome">Cliente</th>
         <th class="sortable" data-sort="periodicidade">Contrato</th>
         <th class="sortable" data-sort="uso">Consumo do banco</th>
-        <th class="sortable" data-sort="proj">Projeção fim do período</th>
+        <th class="sortable" data-sort="proj">Horas restantes</th>
         <th class="sortable" data-sort="situacao">Situação</th>
         <th>Recomendação</th>
         <th></th>
@@ -273,38 +273,24 @@ function analisa(c){
       rec:`A planilha deste cliente não traz o total de horas contratadas, então não é possível calcular consumo nem projeção. Foram lançadas <b>${fmtH(c.utilizadas)}</b> no período. Convém completar o cadastro do contrato para entrar no acompanhamento.`};
   }
   const usoPct  = pct(c.utilizadas, c.contratadas);
-  const projPct = pct(c.proj, c.contratadas);
-  const excedeuAgora = c.utilizadas > c.contratadas || (c.excedidas||0) > 0;
-  // unidade da série: contratos medidos por mês x por semana
-  const un = (c.periodicidade==='Trimestral' && (c.serie||[]).length<=4) || c.periodicidade==='Anual'
-             ? 'por mês' : 'por semana';
+  const excedeu = c.utilizadas > c.contratadas || (c.excedidas||0) > 0;
+  const hExc = (c.excedidas||0)>0 ? c.excedidas : Math.max(0, c.utilizadas - c.contratadas);
   let nivel, farolTxt, rec, rtitle;
 
-  if (excedeuAgora || projPct >= 100){
-    nivel='crit'; farolTxt='Possível aditivo';
-    const horasEstouro = Math.max(c.proj - c.contratadas, c.utilizadas - c.contratadas);
-    rtitle='Sinaliza possível aditivo';
-    if (excedeuAgora){
-      // valor de AUDITORIA: o R$ que a planilha calcula (valor_excedido). Fallback: horas × valor_hora.
-      const valReal = (c.valor_excedido!=null && c.valor_excedido>0) ? c.valor_excedido
-                    : (c.valor_hora ? (c.utilizadas-c.contratadas)*c.valor_hora : null);
-      const rs = valReal!=null ? fmtR(valReal) : null;
-      const hExc = c.excedidas>0 ? c.excedidas : (c.utilizadas-c.contratadas);
-      rec = `O consumo já passou do banco de ${fmtH(c.contratadas)} (<b>${fmtH(c.utilizadas)}</b> lançadas). Já há <b>${fmtH(hExc)}</b> de horas excedentes${rs?`, no valor de <b>${rs}</b> (conforme a planilha)`:''}, o que sinaliza um possível aditivo de horas para o próximo ciclo.`;
-    } else {
-      const rs = (horasEstouro>0 && c.valor_hora) ? fmtR(horasEstouro*c.valor_hora) : null;
-      rec = `No ritmo de <b>${fmtH(c.ritmo)} ${un}</b>, a projeção é fechar o período em <b>${fmtH(c.proj)}</b>, acima do banco de ${fmtH(c.contratadas)}. Se seguir assim, há cerca de <b>${fmtH(horasEstouro)}</b> de horas excedentes previstas${rs?` (aproximadamente <b>${rs}</b>)`:''}: cenário que sinaliza um possível aditivo.`;
-    }
-  } else if (projPct >= 80){
-    nivel='warn'; farolTxt='Atenção';
-    rtitle='Caminho de atenção';
-    rec = `No ritmo de <b>${fmtH(c.ritmo)} ${un}</b>, a projeção é fechar em <b>${fmtH(c.proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco). Ainda dentro do contratado, mas seguindo nesse caminho fica próximo do limite; convém acompanhar a curva nas próximas semanas.`;
+  if (excedeu){
+    nivel='crit'; farolTxt='Possível aditivo'; rtitle='Excedeu o banco';
+    const valReal = (c.valor_excedido!=null && c.valor_excedido>0) ? c.valor_excedido
+                  : (c.valor_hora ? Math.max(0,c.utilizadas-c.contratadas)*c.valor_hora : null);
+    const rs = valReal!=null ? fmtR(valReal) : null;
+    rec = `O consumo já passou do banco de ${fmtH(c.contratadas)} (<b>${fmtH(c.utilizadas)}</b> lançadas). Há <b>${fmtH(hExc)}</b> de horas excedentes${rs?`, no valor de <b>${rs}</b> (conforme a planilha)`:''}, o que sinaliza um possível aditivo de horas.`;
+  } else if (usoPct >= 80){
+    nivel='warn'; farolTxt='Atenção'; rtitle='Próximo do limite';
+    rec = `Já usou <b>${usoPct.toFixed(0)}%</b> do banco (<b>${fmtH(c.utilizadas)}</b> de ${fmtH(c.contratadas)}). Ainda dentro do contratado, mas perto do limite; convém acompanhar até o fechamento do ciclo.`;
   } else {
-    nivel='ok'; farolTxt='Saudável';
-    rtitle='Dentro do contratado';
-    rec = `No ritmo de <b>${fmtH(c.ritmo)} ${un}</b>, a projeção é fechar em <b>${fmtH(c.proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco de ${fmtH(c.contratadas)}). Seguindo nesse fluxo, o consumo permanece confortável dentro do contratado.`;
+    nivel='ok'; farolTxt='Saudável'; rtitle='Dentro do contratado';
+    rec = `Usou <b>${usoPct.toFixed(0)}%</b> do banco (<b>${fmtH(c.utilizadas)}</b> de ${fmtH(c.contratadas)}). Consumo confortável, restam <b>${fmtH(c.contratadas-c.utilizadas)}</b>.`;
   }
-  return {usoPct, projPct, nivel, farolTxt, rec, rtitle};
+  return {usoPct, projPct:usoPct, nivel, farolTxt, rec, rtitle};
 }
 
 /* ================= RENDER ================= */
@@ -464,7 +450,7 @@ function gerarPDF(titulo, indices){
       pill('Restantes', c.restantes!=null?fmtH(c.restantes):'—'),
       (c.excedidas>0?pill('Excedidas', fmtH(c.excedidas)):''),
       ((c.valor_excedido!=null&&c.valor_excedido>0)?pill('A cobrar', fmtR(c.valor_excedido)):''),
-      pill('Projeção', fmtH(c.proj)+(c.contratadas?` (${a.projPct.toFixed(0)}%)`:'')),
+      pill('Restantes', c.restantes!=null?fmtH(c.restantes):'—'),
     ].filter(Boolean).join('');
     return `<section class="pcard">
       <div class="pctitle"><span class="pname">${c.nome}</span>
@@ -509,7 +495,7 @@ function valorSort(c,a,col){
     case 'nome': return c.nome.toLowerCase();
     case 'periodicidade': return ordemPeri[c.periodicidade] ?? 9;
     case 'uso': return a.usoPct||0;
-    case 'proj': return a.projPct||0;
+    case 'proj': return (c.restantes!=null?c.restantes:9999);   // ordena por horas restantes
     case 'situacao': return ordem[a.nivel];   // crit<warn<ok<na
     default: return 0;
   }
@@ -540,7 +526,7 @@ function renderTabela(clientes, ans){
       : `<div class="usepct tnum">${a.usoPct.toFixed(1)}% <small>· ${fmtH(c.utilizadas)} de ${fmtH(c.contratadas)}</small></div>
          <div class="bar"><i style="width:${Math.min(a.usoPct,100)}%;background:${barColor(a.nivel)}"></i></div>`;
     const proj = semBanco ? '<span style="color:var(--muted2)">—</span>'
-      : `${fmtH(c.proj)} <small style="color:var(--muted2)">(${a.projPct.toFixed(0)}%)</small>`;
+      : `${fmtH(c.restantes)} <small style="color:var(--muted2)">de ${fmtH(c.contratadas)}</small>`;
     const tr=document.createElement('tr');
     tr.onclick=()=>abreModal(c,a);
     tr.innerHTML=`
@@ -625,30 +611,25 @@ function analisaCiclo(c, cy){
   const contr=cy.contratadas, util=cy.utilizadas||0;
   const exc=cy.excedidas!=null?cy.excedidas:(contr!=null?Math.max(0,util-contr):0);
   const usoPct = contr? util/contr*100 : 0;
-  const un = (c.periodicidade==='Mensal') ? 'semana' : 'mês';
-  // ritmo e projeção dentro do ciclo
-  const pts=(cy.serie||[]).filter(s=>s.util!=null);
-  const lancados=pts.filter(s=>s.util>0).length || pts.length || 1;
-  const ritmo = util/lancados;
-  let proj = ritmo*(cy.serie?cy.serie.length:lancados);
-  if(exc>0 || (contr && util>contr)) proj=Math.max(proj,util);
-  const projPct = contr? proj/contr*100 : 0;
+  // farol pelo CONSUMO REAL do banco (sem projeção de ritmo, que gerava aditivo falso)
+  const excedeu = (util>contr) || (exc>0);
   let nivel,farolTxt,rtitle,rec;
   const valReal=(cy.valor_excedido!=null&&cy.valor_excedido>0)?cy.valor_excedido:(cy.valor_hora&&contr?Math.max(0,util-contr)*cy.valor_hora:null);
+  const hExc = exc>0 ? exc : Math.max(0,util-contr);
   if(contr==null){ nivel='na';farolTxt='Sem banco';rtitle='Banco não informado';
     rec=`Este ciclo não traz o total de horas contratadas. Foram lançadas <b>${fmtH(util)}</b>.`; }
-  else if(util>contr || exc>0 || projPct>=100){
-    nivel='crit';farolTxt='Possível aditivo';rtitle='Sinaliza possível aditivo';
+  else if(excedeu){
+    nivel='crit';farolTxt='Possível aditivo';rtitle='Excedeu o banco';
     const rs=valReal!=null?fmtR(valReal):null;
-    rec=`O consumo já passou do banco de ${fmtH(contr)} (<b>${fmtH(util)}</b> lançadas). Já há <b>${fmtH(Math.max(0,util-contr))}</b> de horas excedentes${rs?`, no valor de <b>${rs}</b> (conforme a planilha)`:''}, o que sinaliza um possível aditivo de horas para o próximo ciclo.`;
-  } else if(projPct>=80){
-    nivel='warn';farolTxt='Atenção';rtitle='Caminho de atenção';
-    rec=`No ritmo de <b>${fmtH(ritmo)} por ${un}</b>, a projeção é fechar em <b>${fmtH(proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco). Ainda dentro do contratado, mas seguindo nesse caminho fica próximo do limite.`;
+    rec=`O consumo já passou do banco de ${fmtH(contr)} (<b>${fmtH(util)}</b> lançadas). Há <b>${fmtH(hExc)}</b> de horas excedentes${rs?`, no valor de <b>${rs}</b> (conforme a planilha)`:''}, o que sinaliza um possível aditivo de horas.`;
+  } else if(usoPct>=80){
+    nivel='warn';farolTxt='Atenção';rtitle='Próximo do limite';
+    rec=`Já usou <b>${usoPct.toFixed(0)}%</b> do banco (<b>${fmtH(util)}</b> de ${fmtH(contr)}). Ainda dentro do contratado, mas perto do limite; convém acompanhar até o fechamento do ciclo.`;
   } else {
     nivel='ok';farolTxt='Saudável';rtitle='Dentro do contratado';
-    rec=`No ritmo de <b>${fmtH(ritmo)} por ${un}</b>, a projeção é fechar em <b>${fmtH(proj)}</b> (<b>${projPct.toFixed(0)}%</b> do banco de ${fmtH(contr)}). Consumo confortável dentro do contratado.`;
+    rec=`Usou <b>${usoPct.toFixed(0)}%</b> do banco (<b>${fmtH(util)}</b> de ${fmtH(contr)}). Consumo confortável, restam <b>${fmtH(contr-util)}</b>.`;
   }
-  return {contr,util,exc,usoPct,proj,projPct,ritmo,nivel,farolTxt,rtitle,rec,valReal,
+  return {contr,util,exc,usoPct,proj:util,projPct:usoPct,ritmo:0,nivel,farolTxt,rtitle,rec,valReal,
           restantes: contr!=null?contr-util:null};
 }
 
@@ -673,8 +654,6 @@ function corpoCiclo(c, cy){
       <div class="mstat"><div class="l">Utilizadas</div><div class="v tnum">${fmtH(a.util)}</div></div>
       <div class="mstat"><div class="l">Restantes</div><div class="v tnum">${fmtH(a.restantes)}</div></div>
       <div class="mstat"><div class="l">% usado</div><div class="v tnum">${a.contr?a.usoPct.toFixed(1)+'%':'—'}</div></div>
-      <div class="mstat"><div class="l">Ritmo médio</div><div class="v tnum">${fmtH(a.ritmo)}</div></div>
-      <div class="mstat"><div class="l">Projeção fim</div><div class="v tnum">${fmtH(a.proj)}</div></div>
       ${(a.exc>0)?`<div class="mstat"><div class="l">Horas excedidas</div><div class="v tnum">${fmtH(a.exc)}</div></div>`:''}
       ${(a.valReal!=null&&a.valReal>0)?`<div class="mstat"><div class="l">Excedente a cobrar</div><div class="v tnum" style="color:var(--crit)">${fmtR(a.valReal)}</div></div>`:''}`;
   return `
